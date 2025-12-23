@@ -1,1 +1,1 @@
-export { default as InlineLink } from './InlineLink.astro';
+export { default as InlineLink } from "./InlineLink.astro";

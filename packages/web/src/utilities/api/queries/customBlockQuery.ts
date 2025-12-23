@@ -1,14 +1,15 @@
-import { PortableText } from 'astro-portabletext';
-import { pageReferenceInSelectQuery } from '.';
+import type { PortableText } from "astro-portabletext";
+import { pageReferenceInSelectQuery } from ".";
+
 type PortableTextProps = Parameters<typeof PortableText>[0];
 
 export interface CustomBlockProps {
-	value: PortableTextProps['value'];
-	components?: PortableTextProps['components'];
+	value: PortableTextProps["value"];
+	components?: PortableTextProps["components"];
 }
 
-export const customBlockQuery = ({ name }: { name: string }): string =>
-	`${name}[]{
+export function customBlockQuery({ name }: { name: string }): string {
+	return `${name}[]{
 		...,
 		markDefs[]{
 			...,
@@ -22,3 +23,4 @@ export const customBlockQuery = ({ name }: { name: string }): string =>
 			},
 		},
 	}`;
+}

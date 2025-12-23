@@ -1,7 +1,7 @@
 ---
-import { type HTMLAttributes } from 'astro/types';
+import { type HTMLAttributes } from "astro/types";
 
-interface Props extends HTMLAttributes<'div'> {
+interface Props extends HTMLAttributes<"div"> {
 	chapeau?: string;
 	title: string;
 	image?: {
@@ -13,14 +13,11 @@ interface Props extends HTMLAttributes<'div'> {
 const { chapeau, title, image, class: className, ...attrs } = Astro.props;
 ---
 
-<header
-	class={`c-hero${image ? ' c-hero--image' : ''}${className ? ` | ${className}` : ''}`}
-	{...attrs}
->
+<header class={`c-hero${image ? " c-hero--image" : ""}${className ? ` | ${className}` : ""}`} {...attrs}>
 	{
 		image && image.src ? (
 			<div class="c-hero__wrap-visual">
-				<img class="c-hero__visual" src={image.src} alt={image.alt || ''} />
+				<img class="c-hero__visual" src={image.src} alt={image.alt || ""} />
 			</div>
 		) : null
 	}
@@ -37,117 +34,3 @@ const { chapeau, title, image, class: className, ...attrs } = Astro.props;
 		</div>
 	</div>
 </header>
-
-<style lang="scss">
-	@use '@supple-kit/css/settings/breakpoints';
-	@use '@supple-kit/css/tools/responsive';
-
-	@layer components {
-		.c-hero {
-			--hero-block-padding: var(--s-space-tera);
-			--hero-image-size-min: 8rem;
-			--hero-image-size-max: 30rem;
-			--hero-image-size: 0px;
-			--hero-gutter: var(--s-space-base);
-			--hero-visual-inline-size: min(80%, 320px);
-			--hero-visual-spacing: #{responsive.lock(8px, 24px, 'palm', 'desk')};
-			--hero-visual-border-size: #{responsive.lock(2px, 5px, 'palm', 'desk')};
-			display: grid;
-			grid-template-rows:
-				[full-start] var(--s-space-layer)
-				[image-start] auto [bg-start] auto
-				[image-end] var(--s-space-milli)
-				[body-start] auto [body-end] var(--s-space-layer)
-				[bg-end full-end];
-			grid-template-columns:
-				[full-start bg-start] var(--s-space-bleed)
-				[image-start body-start] auto [body-end image-end] var(--s-space-bleed)
-				[bg-end full-end];
-
-			&:before {
-				grid-area: image;
-				border-radius: 100%;
-				inline-size: var(--hero-visual-inline-size);
-				aspect-ratio: 1 / 1;
-				border: var(--hero-visual-border-size) solid
-					var(--s-color-brand-secondary);
-				place-self: center center;
-			}
-			&:after {
-				content: '';
-				grid-area: bg;
-				background-color: var(--s-color-slate-background);
-				z-index: 1;
-			}
-		}
-
-		.c-hero--image {
-			--hero-image-size: minmax(
-				calc(var(--hero-image-size-min) / 2),
-				calc(var(--hero-image-size-max) / 2)
-			);
-
-			&:before {
-				content: '';
-			}
-		}
-
-		@media (--lap) {
-			.c-hero {
-				--hero-visual-inline-size: 100%;
-				--hero-gutter: var(--s-space-bleed);
-				grid-template-rows: [full-start image-start bg-start body-start] 1fr [body-end bg-end full-end];
-				grid-template-columns:
-					[full-start] minmax(var(--s-space-bleed), auto)
-					[image-start] var(--hero-image-size) [bg-start] var(--hero-image-size)
-					[image-end] var(--hero-gutter)
-					[body-start] minmax(auto, 65ch) [body-end] minmax(
-						var(--s-space-bleed),
-						auto
-					)
-					[bg-end full-end];
-
-				&:before {
-					margin-block: var(--hero-block-padding);
-				}
-
-				&:after {
-					border-end-start-radius: var(--s-space-layer-radius);
-				}
-			}
-		}
-
-		.c-hero__wrap-visual {
-			inline-size: var(--hero-visual-inline-size);
-			padding: calc(
-				var(--hero-visual-spacing) + var(--hero-visual-border-size)
-			);
-			grid-area: image;
-			z-index: 2;
-			aspect-ratio: 1 / 1;
-			place-self: center center;
-
-			img {
-				inline-size: 100%;
-				aspect-ratio: 1 / 1;
-				border-radius: 100%;
-				object-fit: cover;
-			}
-		}
-
-		.c-hero__body {
-			grid-area: body;
-			place-self: center start;
-			z-index: 2;
-
-			@media (--lap) {
-				padding-block: var(--hero-body-block-padding, var(--s-space-kilo));
-			}
-		}
-
-		.c-hero__salutation {
-			display: block;
-			font-size: var(--hero-salutaion-font-size, var(--s-font-size-600));
-		}
-	}
-</style>

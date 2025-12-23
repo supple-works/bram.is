@@ -1,9 +1,9 @@
 ---
-import { getStaticPathsFromData } from 'src/utilities/api/helpers/getStaticPathsFromData';
-import { getDataHome, type PageHomeProps } from '../../utilities/api/pagehome';
-import type { Locale } from 'src/utilities/locale';
-import Layout from '@layouts/Layout.astro';
-import { Hero } from '@components/organisms/Hero';
+import { getStaticPathsFromData } from "src/utilities/api/helpers/getStaticPathsFromData";
+import { getDataHome, type PageHomeProps } from "../../utilities/api/pagehome";
+import type { Locale } from "src/utilities/locale";
+import Layout from "@layouts/Layout.astro";
+import { Hero } from "@components/organisms/Hero";
 
 // const pageData = await getDataHome();
 export async function getStaticPaths() {
@@ -17,15 +17,9 @@ interface Props {
 }
 
 const { locale, pagesData } = Astro.props;
-const pageData: PageHomeProps = pagesData.filter(
-	(page) => page.localeID === locale.id,
-)[0];
+const pageData: PageHomeProps = pagesData.filter((page) => page.localeID === locale.id)[0];
 ---
 
-<Layout
-	metaData={pageData.metaData}
-	skipMetaTitleSuffix
-	alternativeTranslations={pageData.alternativeTranslations}
->
+<Layout metaData={pageData.metaData} skipMetaTitleSuffix alternativeTranslations={pageData.alternativeTranslations}>
 	<h1>{pageData.title}</h1>
 </Layout>

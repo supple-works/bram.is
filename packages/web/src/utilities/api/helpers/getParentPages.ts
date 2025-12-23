@@ -1,7 +1,7 @@
 // TODO: type safety
 
-export const getPageFolder = (page: any): string | undefined => {
-	let slug = '';
+export function getPageFolder(page: any): string | undefined {
+	let slug = "";
 
 	// iterate over subFolderReferences without recursion
 	if (page.parentPage) {
@@ -9,21 +9,21 @@ export const getPageFolder = (page: any): string | undefined => {
 		while (stack?.length > 0) {
 			const currentObj = stack.pop();
 			Object.keys(currentObj).forEach((key) => {
-				if (key === 'slug') {
+				if (key === "slug") {
 					slug = `/${currentObj[key]}${slug}`;
 				}
-				if (typeof currentObj[key] === 'object' && currentObj[key] !== null) {
+				if (typeof currentObj[key] === "object" && currentObj[key] !== null) {
 					stack.push(currentObj[key]);
 				}
 			});
 		}
 	}
 
-	return slug === '' ? undefined : slug.replace('/', '');
-};
+	return slug === "" ? undefined : slug.replace("/", "");
+}
 
-export const getFullPageUrl = (page: any): string => {
+export function getFullPageUrl(page: any): string {
 	const subFolder = getPageFolder(page);
 
-	return `${subFolder ? `${subFolder}/` : ''}${page.slug}`;
-};
+	return `${subFolder ? `${subFolder}/` : ""}${page.slug}`;
+}

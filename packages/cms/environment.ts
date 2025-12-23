@@ -1,2 +1,2 @@
-export const studioProjectID = 'a0nc81hk'
-export const studioDataSet = 'production'
+export const studioProjectID = "a0nc81hk";
+export const studioDataSet = "production";

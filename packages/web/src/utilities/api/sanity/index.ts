@@ -1,1 +1,1 @@
-export * from './getSanityData';
+export * from "./getSanityData";

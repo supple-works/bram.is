@@ -1,1 +1,1 @@
-export { default as Swatch } from './Swatch.astro';
+export { default as Swatch } from "./Swatch.astro";

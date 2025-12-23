@@ -1,16 +1,16 @@
-import {IconType} from 'react-icons'
+import type { IconType } from "react-icons";
 
 interface DocumentListProps {
-	title: string
-	type: string
-	icon: IconType
+	title: string;
+	type: string;
+	icon: IconType;
 }
 
 /**
  * Generic function to render a list of documents
  */
-const getGenericList = (S: any, {type, title, icon}: DocumentListProps) =>
-	S.listItem()
+function getGenericList(S: any, { type, title, icon }: DocumentListProps) {
+	return S.listItem()
 		.title(title)
 		.icon(icon)
 		.schemaType(type)
@@ -20,12 +20,14 @@ const getGenericList = (S: any, {type, title, icon}: DocumentListProps) =>
 				.title(title)
 				.schemaType(type)
 				.filter(`_type == "${type}" && language == $baseLanguage`)
-				.params({baseLanguage: `en`})
+				.params({ baseLanguage: `en` })
 				.canHandleIntent(S.documentTypeList(type).getCanHandleIntent()),
-		)
+		);
+}
 
 /**
  * This will render a list of documents inside the CMS.
  */
-export const getTranslatedDocumentList = (S: any, config: DocumentListProps) =>
-	getGenericList(S, {...config})
+export function getTranslatedDocumentList(S: any, config: DocumentListProps) {
+	return getGenericList(S, { ...config });
+}

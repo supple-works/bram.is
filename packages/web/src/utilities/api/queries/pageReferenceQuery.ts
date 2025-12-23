@@ -1,6 +1,6 @@
-import { parentPageQuery } from '.';
+import { parentPageQuery } from ".";
 
-export const pageReferenceInSelectQuery = (): string => {
+export function pageReferenceInSelectQuery(): string {
 	return `
 		pageReference->_type match "page-" =>
 		pageReference->{
@@ -9,4 +9,4 @@ export const pageReferenceInSelectQuery = (): string => {
 			${parentPageQuery()}
 		}
 	`;
-};
+}

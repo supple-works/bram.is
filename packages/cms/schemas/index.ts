@@ -1,22 +1,22 @@
-// Pages
-import homepagePage from './pages/homepage'
-import cvPage from './pages/cv'
-import discographyPage from './pages/discography'
-import recordPage from './pages/record'
+import educationDocument from "./documents/education";
+import employmentTypeDocument from "./documents/employmentType";
+import experienceDocument from "./documents/experience";
+import personalDocument from "./documents/personal";
 
 // Documents
-import settingsDocument from './documents/settings'
-import personalDocument from './documents/personal'
-import employmentTypeDocument from './documents/employmentType'
-import experienceDocument from './documents/experience'
-import skillsDocument from './documents/skills'
-import educationDocument from './documents/education'
-
+import settingsDocument from "./documents/settings";
+import skillsDocument from "./documents/skills";
+import customBlockObject from "./objects/customBlock";
+import linkObject from "./objects/link";
 // Objects
-import metaDataObject from './objects/metaData'
-import pageSelectorObject from './objects/pageSelector'
-import customBlockObject from './objects/customBlock'
-import linkObject from './objects/link'
+import metaDataObject from "./objects/metaData";
+import pageSelectorObject from "./objects/pageSelector";
+
+import cvPage from "./pages/cv";
+import discographyPage from "./pages/discography";
+// Pages
+import homepagePage from "./pages/homepage";
+import recordPage from "./pages/record";
 
 export const schemaTypes = [
 	// Pages
@@ -36,4 +36,4 @@ export const schemaTypes = [
 	pageSelectorObject,
 	customBlockObject,
 	linkObject,
-]
+];

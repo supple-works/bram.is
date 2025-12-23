@@ -1,16 +1,13 @@
 ---
-import Layout from '../../../layouts/Layout.astro';
-import { Cover } from '@components/molecules';
-import { getStaticPathsFromData } from 'src/utilities/api/helpers/getStaticPathsFromData';
-import { getFullPageUrl } from 'src/utilities/api/helpers/getParentPages';
-import {
-	getDataPageDiscography,
-	type PageDiscographyProps,
-} from 'src/utilities/api/pageDiscography';
+import Layout from "../../../layouts/Layout.astro";
+import { Cover } from "@components/molecules";
+import { getStaticPathsFromData } from "src/utilities/api/helpers/getStaticPathsFromData";
+import { getFullPageUrl } from "src/utilities/api/helpers/getParentPages";
+import { getDataPageDiscography, type PageDiscographyProps } from "src/utilities/api/pageDiscography";
 
 export async function getStaticPaths() {
 	const data = await getDataPageDiscography();
-	return getStaticPathsFromData({ data, fragment: 'discography' });
+	return getStaticPathsFromData({ data, fragment: "discography" });
 }
 
 interface Props {
@@ -20,11 +17,7 @@ interface Props {
 const { pageData } = Astro.props;
 ---
 
-<Layout
-	metaData={pageData.metaData}
-	type={pageData.type}
-	alternativeTranslations={pageData.alternativeTranslations}
->
+<Layout metaData={pageData.metaData} type={pageData.type} alternativeTranslations={pageData.alternativeTranslations}>
 	<h1>{pageData.title}</h1>
 
 	{

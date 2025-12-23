@@ -1,20 +1,20 @@
 ---
-import { ContentBlock } from '@components/elements';
-import Layout from '../../../layouts/Layout.astro';
-import { getStaticPathsFromData } from 'src/utilities/api/helpers/getStaticPathsFromData';
-import { getDataPageCV, type PageCVProps } from 'src/utilities/api/pageCV';
-import { stringToSlug } from 'src/utilities/stringToSlug';
-import { formatLongDate } from 'src/utilities/date';
-import { getLocaleFromURL } from 'src/utilities/locale';
-import { Job } from '@components/molecules';
-import { useSettings } from 'src/utilities/api/queries';
-import { Hero } from '@components/organisms/Hero';
-import { LayerSidebar } from '@components/molecules/Layer';
-import { Heading } from '@components/elements/Heading';
+import { ContentBlock } from "@components/elements";
+import Layout from "../../../layouts/Layout.astro";
+import { getStaticPathsFromData } from "src/utilities/api/helpers/getStaticPathsFromData";
+import { getDataPageCV, type PageCVProps } from "src/utilities/api/pageCV";
+import { stringToSlug } from "src/utilities/stringToSlug";
+import { formatLongDate } from "src/utilities/date";
+import { getLocaleFromURL } from "src/utilities/locale";
+import { Job } from "@components/molecules";
+import { useSettings } from "src/utilities/api/queries";
+import { Hero } from "@components/organisms/Hero";
+import { LayerSidebar } from "@components/molecules/Layer";
+import { Heading } from "@components/elements/Heading";
 
 export async function getStaticPaths() {
 	const data = await getDataPageCV();
-	const staticPaths = getStaticPathsFromData({ data, fragment: 'cv' });
+	const staticPaths = getStaticPathsFromData({ data, fragment: "cv" });
 
 	return staticPaths;
 }
@@ -34,45 +34,31 @@ const now = new Date();
 <Layout
 	metaData={{
 		...pageData.metaData,
-		title: `CV-Bram_Smulders-${now.getFullYear()}-${now.getMonth() + 1}-${locale.id}${avg ? '-avg' : ''}`,
+		title: `CV-Bram_Smulders-${now.getFullYear()}-${now.getMonth() + 1}-${locale.id}${avg ? "-avg" : ""}`,
 	}}
 	skipMetaTitleSuffix
 	type={pageData.type}
 	alternativeTranslations={pageData.alternativeTranslations}
 >
-	<div
-		class={`u-print-full${avg ? ' is-avg' : ''}`}
-		itemscope
-		itemtype="http://schema.org/Person"
-	>
+	<div class={`u-print-full${avg ? " is-avg" : ""}`} itemscope itemtype="http://schema.org/Person">
 		<Hero
 			chapeau={settings.labels.salutation}
 			title={`${settings.labels.iAm} ${settings.personal.givenName} ${settings.personal.familyName}.`}
 			image={!avg
 				? {
-						src: '/images/avatar/lon-eye.webp',
-						alt: 'Bram Smulders in the London Eye',
+						src: "/images/avatar/lon-eye.webp",
+						alt: "Bram Smulders in the London Eye",
 					}
 				: undefined}
 		>
 			<p slot="payoff">
-				{
-					!avg
-						? settings.labels.a.charAt(0).toUpperCase() +
-							settings.labels.a.slice(1)
-						: ''
-				}
-				<span class="u-color-brand-primary" itemprop="jobTitle"
-					>{settings.personal.jobTitle}</span
-				>
+				{!avg ? settings.labels.a.charAt(0).toUpperCase() + settings.labels.a.slice(1) : ""}
+				<span class="u-color-brand-primary" itemprop="jobTitle">{settings.personal.jobTitle}</span>
 				{
 					!avg ? (
 						<>
 							{settings.labels.from}
-							<span class="u-color-brand-primary">
-								{settings.personal.country}
-							</span>
-							.
+							<span class="u-color-brand-primary">{settings.personal.country}</span>.
 						</>
 					) : null
 				}
@@ -122,30 +108,18 @@ const now = new Date();
 							<dl class="c-definitions">
 								<dt>{settings.labels.name}</dt>
 								<dd>
-									<span itemprop="givenName">
-										{settings.personal.givenName}
-									</span>
-									<span itemprop="familyName">
-										{settings.personal.familyName}
-									</span>
+									<span itemprop="givenName">{settings.personal.givenName}</span>
+									<span itemprop="familyName">{settings.personal.familyName}</span>
 								</dd>
 								<dt>{settings.labels.dateOfBirth}</dt>
-								<dd itemprop="birthDate">
-									{formatLongDate(
-										new Date(settings.personal.birthDate),
-										locale.locale,
-									)}
-								</dd>
+								<dd itemprop="birthDate">{formatLongDate(new Date(settings.personal.birthDate), locale.locale)}</dd>
 								<dt>{settings.labels.email}</dt>
 								<dd>{settings.personal.email}</dd>
 								<dt>{settings.labels.phone}</dt>
 								<dd>{settings.personal.phone}</dd>
 								<dt>{settings.labels.location}</dt>
 								<dd itemprop="homeLocation">
-									{settings.personal.city},{' '}
-									<span itemprop="nationality">
-										{settings.personal.country}
-									</span>
+									{settings.personal.city}, <span itemprop="nationality">{settings.personal.country}</span>
 								</dd>
 							</dl>
 						</>

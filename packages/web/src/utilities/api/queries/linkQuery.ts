@@ -3,13 +3,13 @@ export interface LinkProps {
 	href: string;
 }
 
-export const linkQuery = ({
+export function linkQuery({
 	multiple = false,
 }: {
 	multiple: boolean;
-}): string => {
-	return `link${multiple ? 's[]' : ''}{
+}): string {
+	return `link${multiple ? "s[]" : ""}{
 			label,
 			href,
 	}`;
-};
+}

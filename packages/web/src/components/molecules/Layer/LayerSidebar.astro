@@ -1,17 +1,14 @@
 ---
-import { type HTMLAttributes } from 'astro/types';
+import { type HTMLAttributes } from "astro/types";
 
-interface Props extends HTMLAttributes<'div'> {
+interface Props extends HTMLAttributes<"div"> {
 	reversed?: boolean;
 }
 
 const { reversed, class: className, ...attrs } = Astro.props;
 ---
 
-<section
-	class={`c-layer${reversed ? ' c-layer--reversed' : ''}${className ? ` | ${className}` : ''}`}
-	{...attrs}
->
+<section class={`c-layer${reversed ? " c-layer--reversed" : ""}${className ? ` | ${className}` : ""}`} {...attrs}>
 	<div class="c-layer__body">
 		<slot />
 	</div>
@@ -19,77 +16,3 @@ const { reversed, class: className, ...attrs } = Astro.props;
 		<slot name="aside" />
 	</aside>
 </section>
-
-<style lang="scss">
-	@use '@supple-kit/css/settings/breakpoints';
-
-	@layer components {
-		.c-layer {
-			--c-layer-inner-space: 0px;
-			--c-layer-aside-size: 32.5ch;
-			--c-layer-body-size: 55ch;
-			display: grid;
-			grid-template-rows:
-				[full-start bg-start] var(--s-space-layer)
-				[body-start] auto [body-end] var(--s-space-milli)
-				[aside-start] auto [aside-end] var(--s-space-layer) [bg-end full-end];
-			grid-template-columns:
-				[full-start bg-start] var(--s-space-bleed)
-				[body-start aside-start] auto [aside-end body-end] var(--s-space-bleed)
-				[bg-end full-end];
-			background-color: var(--s-color-slate-background);
-
-			&:before {
-				content: '';
-				background-color: var(--s-color-background);
-				grid-area: bg;
-				border-start-end-radius: var(--s-space-layer-radius);
-				border-end-end-radius: var(--s-space-layer-radius);
-			}
-
-			@media (--lap) {
-				--c-layer-inner-space: var(--s-space-layer);
-				grid-template-rows: [full-start bg-start body-start aside-start] 1fr [aside-end body-end bg-end full-end];
-				grid-template-columns:
-					[full-start bg-start] minmax(var(--s-space-bleed), auto)
-					[body-start] minmax(auto, var(--c-layer-body-size)) [body-end] var(
-						--s-space-bleed
-					)
-					[bg-end] var(--s-space-bleed)
-					[aside-start] minmax(auto, var(--c-layer-aside-size))
-					[aside-end] minmax(var(--s-space-bleed), auto) [full-end];
-			}
-		}
-
-		.c-layer--reversed {
-			background-color: var(--s-color-background);
-			&:before {
-				background-color: var(--s-color-slate-background);
-				border-start-end-radius: 0;
-				border-end-end-radius: 0;
-				border-start-start-radius: var(--s-space-layer-radius);
-				border-end-start-radius: var(--s-space-layer-radius);
-			}
-
-			@media (--lap) {
-				grid-template-columns:
-					[full-start] minmax(var(--s-space-bleed), auto)
-					[aside-start] minmax(auto, var(--c-layer-aside-size))
-					[aside-end]
-					var(--s-space-bleed) [bg-start] var(--s-space-bleed)
-					[body-start] minmax(auto, var(--c-layer-body-size)) [body-end]
-					minmax(var(--s-space-bleed), auto) [bg-end full-end];
-			}
-		}
-
-		.c-layer__body {
-			grid-area: body;
-			padding-block: var(--c-layer-inner-space);
-		}
-
-		.c-layer__aside {
-			grid-area: aside;
-			padding-block: var(--c-layer-inner-space);
-		}
-	}
-</style>

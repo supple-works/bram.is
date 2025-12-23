@@ -1,10 +1,11 @@
-import type { Locale } from 'src/utilities/locale';
+import type { Locale } from "src/utilities/locale";
+import type { MetaDataProps, ParentPageProps } from ".";
 import {
+
 	metaDataQuery,
-	type MetaDataProps,
+
 	parentPageQuery,
-	type ParentPageProps,
-} from '.';
+} from ".";
 
 interface AlternativeTranslationProps extends ParentPageProps {
 	locale: Locale;
@@ -21,7 +22,7 @@ export interface PageProps extends MetaDataProps, ParentPageProps {
 	slug?: string;
 }
 
-export const pageQuery = ({
+export function pageQuery({
 	type,
 	projection,
 	multiple = false,
@@ -29,8 +30,8 @@ export const pageQuery = ({
 	type: string;
 	projection: string;
 	multiple?: boolean;
-}): string => {
-	return `*[_type in ["${type}"]]${multiple ? '' : '[0]'} {
+}): string {
+	return `*[_type in ["${type}"]]${multiple ? "" : "[0]"} {
 		"type": _type,
 		"createdAt": _createdAt,
 		"updatedAt": _updatedAt,
@@ -46,4 +47,4 @@ export const pageQuery = ({
 			${parentPageQuery()},
 		},
 	}`;
-};
+}
