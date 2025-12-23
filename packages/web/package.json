@@ -10,9 +10,13 @@
 		"astro": "astro"
 	},
 	"dependencies": {
+		"@tailwindcss/vite": "^4.1.18",
 		"astro": "^5.16.6",
 		"astro-portabletext": "^0.12.0",
+		"class-variance-authority": "^0.7.1",
+		"lightningcss": "^1.30.2",
 		"slugify": "^1.6.6",
+		"tailwindcss": "^4.1.18",
 		"vite": "^7.3.0"
 	},
 	"devDependencies": {
@@ -20,7 +24,6 @@
 		"@sanity/client": "^7.13.2",
 		"@sanity/image-url": "^2.0.2",
 		"postcss-custom-media": "^11.0.6",
-		"prettier-plugin-astro": "^0.14.1",
-		"sass": "^1.97.1"
+		"prettier-plugin-astro": "^0.14.1"
 	}
 }

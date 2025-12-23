@@ -1,0 +1,66 @@
+:where(h1, h2, h3, h4, h5, h6) {
+	font-family: var(--heading-font, var(--font-heading));
+	font-weight: var(--heading-font-weight, var(--font-weight-semibold));
+	letter-spacing: var(--heading-kerning, var(--kerning-base));
+	line-height: var(--heading-line-height, var(--leading-fine));
+	overflow-wrap: anywhere;
+	text-wrap: balance;
+}
+
+:where(h1) {
+	font-size: var(--text-heading-1);
+	max-inline-size: var(--measure-h1);
+}
+
+:where(h2) {
+	font-size: var(--text-heading-2);
+	max-inline-size: var(--measure-h2);
+}
+
+:where(h3) {
+	font-size: var(--text-heading-3);
+	max-inline-size: var(--measure-h3);
+}
+
+:where(h4) {
+	font-size: var(--text-heading-4);
+	max-inline-size: var(--measure-h4);
+}
+
+:where(h5) {
+	font-size: var(--text-heading-5);
+	max-inline-size: var(--measure-h5);
+}
+
+:where(h6) {
+	font-size: var(--text-heading-6);
+	max-inline-size: var(--measure-h6);
+}
+
+:where(p) {
+	text-wrap: pretty;
+}
+
+:where(small) {
+	font-size: var(--text-small);
+}
+
+.heading-highlight {
+	position: relative;
+	&::before {
+		position: absolute;
+		inset-inline-start: -0.30em;
+		content: ".";
+		color: var(--color-highlight);
+	}
+	/* &::after {
+		position: absolute;
+		inset-block-start: calc(100% + .2em);
+		inset-inline-start: 0;
+		block-size: max(2px, .075em);
+		inline-size: max(2.4ex, 1px);
+		background-color: var(--color-highlight);
+		pointer-events: none;
+		content: "";
+	} */
+}

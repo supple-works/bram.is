@@ -9,8 +9,8 @@ import { Swatch } from "@components/styleguide";
 		description: "bram.is styleguide, depicting the design language used on the website.",
 	}}
 >
-	<div class="retain">
-		<div class="flow">
+	<div>
+		<div>
 			<h1>Styleguide</h1>
 
 			<ul>
@@ -18,11 +18,11 @@ import { Swatch } from "@components/styleguide";
 				<li><a href="#typography">Typography</a></li>
 			</ul>
 
-			<div class="flow">
+			<div>
 				<section id="colors">
 					<h2>Colors</h2>
 
-					<ul class="c-swatch-grid | grid" role="list">
+					<ul role="list">
 						<li>
 							<Swatch color="primary" />
 						</li>
@@ -74,12 +74,12 @@ import { Swatch } from "@components/styleguide";
 
 				<section id="spacing">
 					<h2>Spacing</h2>
-					<ul class="c-list" role="list">
+					<ul role="list">
 						{
 							["nano", "micro", "milli", "base", "kilo", "mega", "giga", "tera"].map((item) => (
-								<li class="c-space" style={`--c-space-size: var(--spacing-${item})`}>
+								<li>
 									<span>
-										<h3 class="u-fs-base">{item}</h3>
+										<h3>{item}</h3>
 										<code>--s-space-{item}</code>
 									</span>
 								</li>
@@ -91,31 +91,3 @@ import { Swatch } from "@components/styleguide";
 		</div>
 	</div>
 </Layout>
-
-<style lang="scss">
-	.c-swatch-grid {
-		--grid-min-item-size: 8rem;
-		--grid-gutter: 2rem;
-	}
-
-	.c-list {
-		display: flex;
-		flex-direction: column;
-		gap: var(--spacing-base);
-	}
-
-	.c-space {
-		--c-space-size: var(--spacing-base);
-		display: flex;
-		gap: var(--spacing-milli);
-		align-items: center;
-
-		&::before {
-			display: block;
-			aspect-ratio: 1 / 1;
-			inline-size: var(--c-space-size);
-			background-color: #ccc;
-			content: "";
-		}
-	}
-</style>

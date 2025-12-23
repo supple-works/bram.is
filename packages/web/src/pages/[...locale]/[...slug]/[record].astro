@@ -19,7 +19,6 @@ const { pageData } = Astro.props;
 
 <Layout metaData={pageData.metaData} type={pageData.type} alternativeTranslations={pageData.alternativeTranslations}>
 	<Picture
-		class="e-picture"
 		src={getSanityImage(pageData.song.albumArt).width(640).height(640).url()}
 		formats={["avif", "webp"]}
 		densities={[1.5, 2]}

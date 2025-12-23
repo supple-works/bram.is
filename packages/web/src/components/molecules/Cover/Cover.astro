@@ -13,7 +13,6 @@ const { albumArt, title, artist, class: className, ...attrs } = Astro.props;
 
 <div class={`c-cover${className ? ` | ${className}` : ""}`} {...attrs}>
 	<Picture
-		class="c-cover__album-art"
 		src={getSanityImage(albumArt).width(640).height(640).url()}
 		formats={["avif", "webp"]}
 		widths={[320, 640]}

@@ -2,6 +2,7 @@
 import type { HTMLAttributes } from "astro/types";
 import { MetaData, type MetaDataProps } from "@components/elements";
 
+import "../styles/global.css";
 import type { PageProps } from "src/utilities/api/queries";
 
 export interface Props extends HTMLAttributes<"html">, MetaDataProps {
@@ -23,12 +24,12 @@ const { lang = "en", type, alternativeTranslations, metaData, skipMetaTitleSuffi
 		/>
 	</head>
 	<body>
-		<header class="u-background-light">
+		<header>
 			<a href="/">bram.is</a>
 		</header>
 		<main id="content">
 			<slot />
-			<footer class="u-background-light">Footer</footer>
 		</main>
+		<footer>Footer</footer>
 	</body>
 </html>

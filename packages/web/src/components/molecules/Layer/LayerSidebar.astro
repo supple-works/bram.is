@@ -9,10 +9,10 @@ const { reversed, class: className, ...attrs } = Astro.props;
 ---
 
 <section class={`c-layer${reversed ? " c-layer--reversed" : ""}${className ? ` | ${className}` : ""}`} {...attrs}>
-	<div class="c-layer__body">
+	<div>
 		<slot />
 	</div>
-	<aside class="c-layer__aside">
+	<aside>
 		<slot name="aside" />
 	</aside>
 </section>

@@ -1,5 +1,6 @@
 import process from "node:process";
 import sanity from "@sanity/astro";
+import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 
@@ -20,4 +21,7 @@ export default defineConfig({
 			useCdn: false,
 		}),
 	],
+	vite: {
+		plugins: [tailwindcss()],
+	},
 });

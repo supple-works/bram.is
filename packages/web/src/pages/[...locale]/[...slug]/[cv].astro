@@ -53,26 +53,26 @@ const now = new Date();
 		>
 			<p slot="payoff">
 				{!avg ? settings.labels.a.charAt(0).toUpperCase() + settings.labels.a.slice(1) : ""}
-				<span class="u-color-brand-primary" itemprop="jobTitle">{settings.personal.jobTitle}</span>
+				<span itemprop="jobTitle">{settings.personal.jobTitle}</span>
 				{
 					!avg ? (
 						<>
 							{settings.labels.from}
-							<span class="u-color-brand-primary">{settings.personal.country}</span>.
+							<span>{settings.personal.country}</span>.
 						</>
 					) : null
 				}
 			</p>
 			<ContentBlock value={pageData.intro} />
 		</Hero>
-		<LayerSidebar class="u-print__section">
+		<LayerSidebar>
 			{
 				pageData.experience ? (
-					<div class="o-flow" id={stringToSlug(pageData.experience.title)}>
+					<div id={stringToSlug(pageData.experience.title)}>
 						<Heading level={2} styledAs={4} variant="emphasised">
 							{pageData.experience.title}
 						</Heading>
-						<ul class="o-flow" role="list">
+						<ul role="list">
 							{pageData.experience.items.map((experience, index) => (
 								<li>
 									<Job
@@ -89,12 +89,12 @@ const now = new Date();
 					</div>
 				) : null
 			}
-			<div slot="aside" class="o-flow">
+			<div slot="aside">
 				<Heading level={2} styledAs={4} variant="emphasised">
 					{pageData.skills.title}
 				</Heading>
 				<div>
-					<div class="c-prose c-prose--emphasise | o-flow">
+					<div>
 						<ContentBlock value={pageData.skills.content} />
 					</div>
 				</div>
@@ -105,7 +105,7 @@ const now = new Date();
 							<Heading level={2} styledAs={4} variant="emphasised">
 								{pageData.personal.title}
 							</Heading>
-							<dl class="c-definitions">
+							<dl>
 								<dt>{settings.labels.name}</dt>
 								<dd>
 									<span itemprop="givenName">{settings.personal.givenName}</span>
@@ -156,32 +156,3 @@ const now = new Date();
 		</LayerSidebar> -->
 	</div>
 </Layout>
-
-<style lang="scss">
-	.c-definitions {
-		// display: grid;
-		// grid-template-columns: 1fr 1fr;
-		dt {
-			text-transform: capitalize;
-			font-weight: bold;
-		}
-		dd {
-			margin-inline-start: 0;
-		}
-
-		dd + dt {
-			margin-block-start: var(--s-space-micro);
-		}
-	}
-
-	.c-prose {
-	}
-
-	.c-prose--emphasise {
-		:global(em) {
-			// color: var(--s-color-brand-primary);
-			font-weight: 600;
-			font-style: normal;
-		}
-	}
-</style>

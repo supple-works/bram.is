@@ -16,16 +16,16 @@ const { chapeau, title, image, class: className, ...attrs } = Astro.props;
 <header class={`c-hero${image ? " c-hero--image" : ""}${className ? ` | ${className}` : ""}`} {...attrs}>
 	{
 		image && image.src ? (
-			<div class="c-hero__wrap-visual">
-				<img class="c-hero__visual" src={image.src} alt={image.alt || ""} />
+			<div>
+				<img src={image.src} alt={image.alt || ""} />
 			</div>
 		) : null
 	}
-	<div class="c-hero__body">
-		<div class="o-flow">
+	<div>
+		<div>
 			<hgroup>
 				<h1>
-					{chapeau ? <span class="c-hero__salutation">Hi,</span> : null}
+					{chapeau ? <span>Hi,</span> : null}
 					{title}
 				</h1>
 				<slot name="payoff" />

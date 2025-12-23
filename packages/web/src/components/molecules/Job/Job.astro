@@ -31,17 +31,17 @@ const endDate = dateEnd ? new Date(dateEnd) : undefined;
 	itemtype="http://schema.org/Organization"
 >
 	<hgroup>
-		<h3 class="as-h5" itemprop="jobTitle">
+		<h3 itemprop="jobTitle">
 			{company}
 			{
 				employmentType ? (
-					<small class="u-font-weight-regular  u-font-size-300 u-color-brand-secondary">
+					<small>
 						<em>{employmentType}</em>
 					</small>
 				) : null
 			}
 		</h3>
-		<em itemprop="name" class="u-color-brand-quinary">{title}</em>
+		<em itemprop="name">{title}</em>
 		<em>
 			{formatMonthYearDate(startDate, locale.locale)} -
 			{endDate ? formatMonthYearDate(endDate, locale.locale) : settings.labels.present}
