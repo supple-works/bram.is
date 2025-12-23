@@ -7,4 +7,13 @@
 @import "./global/fonts.css" layer(global);
 @import "./global/typography.css" layer(global);
 
+@import "./composition/grid.css" layer(composition);
+@import "./composition/retain.css" layer(composition);
+@import "./composition/region.css" layer(composition);
+@import "./composition/switcher.css" layer(composition);
+@import "./composition/cluster.css" layer(composition);
+@import "./composition/flow.css" layer(composition);
+@import "./composition/repel.css" layer(composition);
+@import "./composition/sidebar.css" layer(composition);
+
 @import "tailwindcss/utilities.css" layer(utilities);

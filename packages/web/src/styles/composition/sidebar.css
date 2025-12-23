@@ -1,0 +1,51 @@
+/*
+SIDEBAR
+More info: https://every-layout.dev/layouts/sidebar/
+A layout that allows you to have a flexible main content area
+and a "fixed" width sidebar that sits on the left or right.
+If there is not enough viewport space to fit both the sidebar
+width *and* the main content minimum width, they will stack
+on top of each other
+
+CUSTOM PROPERTIES AND CONFIGURATION
+--sidebar-gap (var(--spacing-gutter)): This defines the space
+between the sidebar and main content.
+
+--sidebar-target-width (20rem): How large the sidebar should be
+
+--sidebar-content-min-width(50%): The minimum size of the main content area
+
+--sidebar-vertical-alignment How items should align vertically.
+
+
+EXCEPTIONS
+.sidebar[data-direction='rtl']: flips the sidebar to be on the right
+*/
+:where(.sidebar) {
+  display: flex;
+  flex-wrap: wrap;
+	align-items: var(--sidebar-vertical-alignment, flex-start);
+  gap: var(--sidebar-gap, var(--spacing-gutter, 1.5rem));
+}
+
+:where(.sidebar:not([data-direction]) > :first-child),
+:where(.sidebar[data-direction='rtl'] > :last-child) {
+  flex-basis: var(--sidebar-target-width, 20rem);
+  flex-grow: 1;
+}
+
+:where(.sidebar:not([data-direction]) > :last-child),
+:where(.sidebar[data-direction='rtl'] > :first-child) {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-width: var(--sidebar-content-min-width, 50%);
+}
+
+:where(.sidebar[data-reversed]) {
+  flex-direction: row-reverse;
+}
+
+:where(.sidebar[data-fit]) {
+	--sidebar-target-width: auto;
+}
+
