@@ -16,19 +16,3 @@ const { class: className, color, accentColor, ...attrs } = Astro.props;
 >
 	<p>{color}</p>
 </div>
-
-<style lang="scss">
-	@layer components {
-		.c-swatch {
-			--_c-swatch-color: var(--c-swatch-color, #ccc);
-
-			&::before {
-				display: block;
-				inline-size: 100%;
-				aspect-ratio: 1/1;
-				background-color: var(--_c-swatch-color);
-				content: "";
-			}
-		}
-	}
-</style>
