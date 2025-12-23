@@ -1,63 +1,33 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
-import { type Swatch } from 'src/styles/settings/colors';
+import type { HTMLAttributes } from "astro/types";
 
-interface Props extends Omit<HTMLAttributes<'div'>, 'color'>, Swatch {}
+interface Props extends HTMLAttributes<"div"> {
+	color: string;
+	accentColor?: string;
+}
 
-const { class: className, name, color, accent, group, ...attrs } = Astro.props;
-const combinedName = group ? `${group}-${name}` : name;
+const { class: className, color, accentColor, ...attrs } = Astro.props;
 ---
 
 <div
-	class={`c-swatch${className ? ` | ${className}` : ''} | o-flow`}
+	class={`c-swatch | u-color--${color}${className ? ` | ${className}` : ""}`}
 	{...attrs}
+	style={`--c-swatch-color: var(--s-color--${color})`}
 >
-	<div
-		class={`c-swatch__canvas | u-background-${combinedName}${
-			accent ? ` u-color-${accent}` : ''
-		}`}
-	>
-		<div>
-			<h3 class="u-font-size-base">{combinedName}</h3>
-			<span><pre>{color}</pre></span>
-		</div>
-	</div>
-	<dl class="c-swatch__body | o-flow">
-		<di>
-			<dt><strong>Custom Property:</strong></dt>
-			<dd><pre>var(--s-color-{combinedName})</pre></dd>
-		</di>
-		<di>
-			<dt><strong>Utilities:</strong></dt>
-			<dd>
-				<pre>u-color-{combinedName}<br />u-background-{combinedName}</pre>
-			</dd>
-		</di>
-	</dl>
+	<p>{color}</p>
 </div>
 
 <style lang="scss">
 	@layer components {
 		.c-swatch {
-			padding: var(--s-space-milli);
-			border: 1px solid black;
-			white-space: nowrap;
-		}
+			--_c-swatch-color: var(--c-swatch-color, #ccc);
 
-		.c-swatch__canvas {
-			display: grid;
-			place-items: end start;
-			inline-size: 100%;
-			aspect-ratio: 3/1;
-			padding: var(--s-space-milli);
-		}
-
-		.c-swatch__body {
-			di {
+			&::before {
 				display: block;
-			}
-			dd {
-				margin-inline-start: 0;
+				inline-size: 100%;
+				aspect-ratio: 1/1;
+				background-color: var(--_c-swatch-color);
+				content: "";
 			}
 		}
 	}

@@ -1,11 +1,11 @@
 ---
-import { getDataPageCV, type PageCVProps } from 'src/utilities/api/pageCV';
-import CVPage from './[cv].astro';
-import { getStaticPathsFromData } from 'src/utilities/api/helpers/getStaticPathsFromData';
+import { getDataPageCV, type PageCVProps } from "src/utilities/api/pageCV";
+import CVPage from "./[cv].astro";
+import { getStaticPathsFromData } from "src/utilities/api/helpers/getStaticPathsFromData";
 
 export async function getStaticPaths() {
 	const data = await getDataPageCV();
-	const staticPaths = getStaticPathsFromData({ data, fragment: 'cv' });
+	const staticPaths = getStaticPathsFromData({ data, fragment: "cv" });
 
 	return staticPaths;
 }

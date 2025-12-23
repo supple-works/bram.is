@@ -1,29 +1,33 @@
-export const formatDate = (date: Date, locale: string): string =>
-	date
+export function formatDate(date: Date, locale: string): string {
+	return date
 		? date
-				.toLocaleDateString(locale.replace('_', '-'), {
-					month: 'long',
-					day: 'numeric',
-					weekday: 'long',
+				.toLocaleDateString(locale.replace("_", "-"), {
+					month: "long",
+					day: "numeric",
+					weekday: "long",
 				})
-				.replace('.', '')
-		: '';
+				.replace(".", "")
+		: "";
+}
 
-export const formatLongDate = (date: Date, locale: string) =>
-	date.toLocaleDateString(locale.replace('_', '-'), {
-		day: 'numeric',
-		month: 'long',
-		year: 'numeric',
+export function formatLongDate(date: Date, locale: string) {
+	return date.toLocaleDateString(locale.replace("_", "-"), {
+		day: "numeric",
+		month: "long",
+		year: "numeric",
 	});
+}
 
-export const formatMonthYearDate = (date: Date, locale: string) =>
-	date.toLocaleDateString(locale.replace('_', '-'), {
+export function formatMonthYearDate(date: Date, locale: string) {
+	return date.toLocaleDateString(locale.replace("_", "-"), {
 		day: undefined,
-		month: 'long',
-		year: 'numeric',
+		month: "long",
+		year: "numeric",
 	});
+}
 
-export const formatDateToISO = (date: Date) =>
-	`${date.getFullYear()}-${`0${date.getMonth() + 1}`.slice(
+export function formatDateToISO(date: Date) {
+	return `${date.getFullYear()}-${`0${date.getMonth() + 1}`.slice(
 		-2,
 	)}-${`0${date.getDate()}`.slice(-2)}`;
+}

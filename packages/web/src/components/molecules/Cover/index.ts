@@ -1,1 +1,1 @@
-export { default as Cover } from './Cover.astro';
+export { default as Cover } from "./Cover.astro";

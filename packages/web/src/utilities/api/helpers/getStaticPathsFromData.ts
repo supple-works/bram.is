@@ -1,8 +1,8 @@
-import { localeCollection } from 'src/utilities/locale';
-import type { PageProps } from '../queries';
-import { getPageFolder } from './getParentPages';
+import type { PageProps } from "../queries";
+import { localeCollection } from "src/utilities/locale";
+import { getPageFolder } from "./getParentPages";
 
-export const getStaticPathsFromData = ({
+export function getStaticPathsFromData({
 	data,
 	fragment,
 	includePagesData,
@@ -10,16 +10,16 @@ export const getStaticPathsFromData = ({
 	data: PageProps | PageProps[];
 	fragment?: string;
 	includePagesData?: boolean;
-}) =>
-	Array.isArray(data)
+}) {
+	return Array.isArray(data)
 		? data
 				.filter(
-					(page) =>
+					page =>
 						localeCollection.filter(
-							(locale) => locale.id === page.localeID || page.localeID === null,
+							locale => locale.id === page.localeID || page.localeID === null,
 						).length,
 				)
-				.map((page) => ({
+				.map(page => ({
 					params: {
 						locale:
 							page.localeID && page.localeID !== localeCollection[0].id
@@ -32,30 +32,31 @@ export const getStaticPathsFromData = ({
 						pageData: page,
 						locale:
 							localeCollection.filter(
-								(locale) => locale.id === page.localeID,
+								locale => locale.id === page.localeID,
 							)[0] || localeCollection[0],
 						...(includePagesData ? { pagesData: data } : {}),
 					},
 				}))
 				.flat(Infinity)
 		: data?.slug
-		? [
-				{
-					params: {
-						locale:
+			? [
+					{
+						params: {
+							locale:
 							data.localeID && data.localeID !== localeCollection[0].id
 								? data.localeID
 								: undefined,
-						slug: getPageFolder(data),
-						...(fragment ? { [fragment]: data.slug } : {}),
-					},
-					props: {
-						pageData: data,
-						locale:
+							slug: getPageFolder(data),
+							...(fragment ? { [fragment]: data.slug } : {}),
+						},
+						props: {
+							pageData: data,
+							locale:
 							localeCollection.filter(
-								(locale) => locale.id === data.localeID,
+								locale => locale.id === data.localeID,
 							)[0] || localeCollection[0],
+						},
 					},
-				},
-		  ]
-		: [];
+				]
+			: [];
+}

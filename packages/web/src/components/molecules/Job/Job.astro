@@ -1,29 +1,20 @@
 ---
-import { ContentBlock } from '@components/elements';
-import { type HTMLAttributes } from 'astro/types';
-import { useSettings, type CustomBlockProps } from 'src/utilities/api/queries';
-import { formatMonthYearDate } from 'src/utilities/date';
-import { getLocaleFromURL } from 'src/utilities/locale';
+import { ContentBlock } from "@components/elements";
+import { type HTMLAttributes } from "astro/types";
+import { useSettings, type CustomBlockProps } from "src/utilities/api/queries";
+import { formatMonthYearDate } from "src/utilities/date";
+import { getLocaleFromURL } from "src/utilities/locale";
 
-interface Props extends HTMLAttributes<'section'> {
+interface Props extends HTMLAttributes<"section"> {
 	title: string;
 	company: string;
-	content?: CustomBlockProps['value'];
+	content?: CustomBlockProps["value"];
 	dateStart: string;
 	dateEnd?: string;
 	employmentType?: string;
 }
 
-const {
-	class: className,
-	title,
-	company,
-	content,
-	dateStart,
-	dateEnd,
-	employmentType,
-	...attrs
-} = Astro.props;
+const { class: className, title, company, content, dateStart, dateEnd, employmentType, ...attrs } = Astro.props;
 const locale = getLocaleFromURL(Astro.url.pathname);
 const settings = await useSettings({ locale });
 
@@ -33,9 +24,9 @@ const endDate = dateEnd ? new Date(dateEnd) : undefined;
 ---
 
 <section
-	class={`c-job | o-flow${className ? ` | ${className}` : ''}`}
+	class={`c-job | o-flow${className ? ` | ${className}` : ""}`}
 	{...attrs}
-	itemprop={currentJob ? 'worksFor' : 'alumniOf'}
+	itemprop={currentJob ? "worksFor" : "alumniOf"}
 	itemscope
 	itemtype="http://schema.org/Organization"
 >
@@ -53,11 +44,7 @@ const endDate = dateEnd ? new Date(dateEnd) : undefined;
 		<em itemprop="name" class="u-color-brand-quinary">{title}</em>
 		<em>
 			{formatMonthYearDate(startDate, locale.locale)} -
-			{
-				endDate
-					? formatMonthYearDate(endDate, locale.locale)
-					: settings.labels.present
-			}
+			{endDate ? formatMonthYearDate(endDate, locale.locale) : settings.labels.present}
 		</em>
 	</hgroup>
 
@@ -69,18 +56,3 @@ const endDate = dateEnd ? new Date(dateEnd) : undefined;
 		) : null
 	}
 </section>
-
-<style lang="scss">
-	.c-job {
-		--o-flow-gap: var(--s-space-nano);
-	}
-
-	.c-job__title {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-
-	.c-job__type {
-	}
-</style>

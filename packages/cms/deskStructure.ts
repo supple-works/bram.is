@@ -10,67 +10,67 @@ import {
 	BsListStars,
 	BsVinyl,
 	BsVinylFill,
-} from 'react-icons/bs'
+} from "react-icons/bs";
 
-import {getFolder} from './utilities/getFolder'
-import {getTranslatedSingleton} from './utilities/getTranslatedSingleton'
-import {getDocumentList} from './utilities/getDocumentList'
-import {getTranslatedDocumentList} from './utilities/getTranslatedDocumentList'
-import {getSingleton} from './utilities/getSingleton'
+import { getDocumentList } from "./utilities/getDocumentList";
+import { getFolder } from "./utilities/getFolder";
+import { getSingleton } from "./utilities/getSingleton";
+import { getTranslatedDocumentList } from "./utilities/getTranslatedDocumentList";
+import { getTranslatedSingleton } from "./utilities/getTranslatedSingleton";
 
 export default (S: any) =>
 	S.list()
-		.title('Content')
+		.title("Content")
 		.items([
 			getFolder(S, {
-				title: 'Pagina’s',
+				title: "Pagina’s",
 				icon: BsFileRichtext,
 				items: [
 					getTranslatedSingleton(S, {
-						title: 'HomePage',
-						type: 'page-home',
+						title: "HomePage",
+						type: "page-home",
 						icon: BsHouse,
 					}),
 					getTranslatedSingleton(S, {
-						title: 'Curriculum Vitae',
-						type: 'page-cv',
+						title: "Curriculum Vitae",
+						type: "page-cv",
 						icon: BsListStars,
 					}),
 					getSingleton(S, {
-						title: 'Discography',
-						type: 'page-discography',
+						title: "Discography",
+						type: "page-discography",
 						icon: BsVinyl,
 					}),
 					getDocumentList(S, {
-						title: 'Record',
-						type: 'page-record',
+						title: "Record",
+						type: "page-record",
 						icon: BsVinylFill,
 					}),
 				],
 			}),
 
 			getFolder(S, {
-				title: 'Documents',
+				title: "Documents",
 				icon: BsFiletypeDoc,
 				items: [
 					getTranslatedDocumentList(S, {
-						title: 'Experience',
-						type: 'experience',
+						title: "Experience",
+						type: "experience",
 						icon: BsListColumnsReverse,
 					}),
 					getDocumentList(S, {
-						title: 'Skills',
-						type: 'skills',
+						title: "Skills",
+						type: "skills",
 						icon: BsListColumnsReverse,
 					}),
 					getTranslatedDocumentList(S, {
-						title: 'Education',
-						type: 'education',
+						title: "Education",
+						type: "education",
 						icon: BsEasel,
 					}),
 					getTranslatedDocumentList(S, {
-						title: 'Employment Type',
-						type: 'employmentType',
+						title: "Employment Type",
+						type: "employmentType",
 						icon: BsBriefcase,
 					}),
 				],
@@ -79,14 +79,14 @@ export default (S: any) =>
 			S.divider(),
 
 			getTranslatedSingleton(S, {
-				title: 'Settings',
-				type: 'settings',
+				title: "Settings",
+				type: "settings",
 				icon: BsGear,
 			}),
 
 			getSingleton(S, {
-				title: 'Personal',
-				type: 'personal',
+				title: "Personal",
+				type: "personal",
 				icon: BsFilePerson,
 			}),
-		])
+		]);

@@ -1,25 +1,25 @@
-import {defineType, defineField} from 'sanity'
+import { defineField, defineType } from "sanity";
 
 export default defineType({
-	title: 'Employment Type',
-	name: 'employmentType',
-	type: 'document',
+	title: "Employment Type",
+	name: "employmentType",
+	type: "document",
 	initialValue: {
-		language: 'en',
+		language: "en",
 	},
 	fields: [
 		defineField({
-			name: 'language',
-			type: 'string',
+			name: "language",
+			type: "string",
 			readOnly: true,
 			hidden: true,
 		}),
 
 		defineField({
-			title: 'Title',
-			name: 'title',
-			type: 'string',
-			validation: (Rule) => Rule.required(),
+			title: "Title",
+			name: "title",
+			type: "string",
+			validation: Rule => Rule.required(),
 		}),
 	],
-})
+});

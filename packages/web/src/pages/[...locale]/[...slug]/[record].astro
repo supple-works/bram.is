@@ -1,16 +1,13 @@
 ---
-import { Picture } from 'astro:assets';
-import {
-	getDataPageRecord,
-	type PageRecordProps,
-} from 'src/utilities/api/pageRecord';
-import Layout from '../../../layouts/Layout.astro';
-import getSanityImage from 'src/utilities/api/sanity/getSanityImage';
-import { getStaticPathsFromData } from 'src/utilities/api/helpers/getStaticPathsFromData';
+import { Picture } from "astro:assets";
+import { getDataPageRecord, type PageRecordProps } from "src/utilities/api/pageRecord";
+import Layout from "../../../layouts/Layout.astro";
+import getSanityImage from "src/utilities/api/sanity/getSanityImage";
+import { getStaticPathsFromData } from "src/utilities/api/helpers/getStaticPathsFromData";
 
 export async function getStaticPaths() {
 	const data = await getDataPageRecord();
-	return getStaticPathsFromData({ data, fragment: 'record' });
+	return getStaticPathsFromData({ data, fragment: "record" });
 }
 
 interface Props {
@@ -20,15 +17,11 @@ interface Props {
 const { pageData } = Astro.props;
 ---
 
-<Layout
-	metaData={pageData.metaData}
-	type={pageData.type}
-	alternativeTranslations={pageData.alternativeTranslations}
->
+<Layout metaData={pageData.metaData} type={pageData.type} alternativeTranslations={pageData.alternativeTranslations}>
 	<Picture
 		class="e-picture"
 		src={getSanityImage(pageData.song.albumArt).width(640).height(640).url()}
-		formats={['avif', 'webp']}
+		formats={["avif", "webp"]}
 		densities={[1.5, 2]}
 		width={320}
 		height={320}

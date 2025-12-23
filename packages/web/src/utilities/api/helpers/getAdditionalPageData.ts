@@ -1,14 +1,15 @@
-import { localeCollection, type Locale } from 'src/utilities/locale';
-import type { ParentPageProps } from '../queries';
-import { getPageFolder } from './getParentPages';
+import type { Locale } from "src/utilities/locale";
+import type { ParentPageProps } from "../queries";
+import { localeCollection } from "src/utilities/locale";
+import { getPageFolder } from "./getParentPages";
 
 export interface AlternativeTranslationsProps extends ParentPageProps {
 	locale: Locale;
 	href: string;
 }
 
-const getDataForAlernativeTranslations = (pages: any) =>
-	pages.map((page: any) => ({
+function getDataForAlernativeTranslations(pages: any) {
+	return pages.map((page: any) => ({
 		...page,
 		alternativeTranslations: page.alternativeTranslations
 			? page.alternativeTranslations
@@ -22,14 +23,16 @@ const getDataForAlernativeTranslations = (pages: any) =>
 						href: `${
 							alternative.subFolderReference
 								? `${getPageFolder(alternative)}/`
-								: ''
-						}${alternative.slug || ''}`,
+								: ""
+						}${alternative.slug || ""}`,
 						locale: localeCollection.filter(
-							(locale) => locale.id === alternative.localeID,
+							locale => locale.id === alternative.localeID,
 						)[0],
 					}))
 			: null,
 	}));
+}
 
-export const getAdditionalPageData = (pages: any) =>
-	getDataForAlernativeTranslations(pages);
+export function getAdditionalPageData(pages: any) {
+	return getDataForAlernativeTranslations(pages);
+}

@@ -1,5 +1,5 @@
-export const getViews = (S: any) => {
-	const views = [S.view.form()]
+export function getViews(S: any) {
+	const views = [S.view.form()];
 
-	return views
+	return views;
 }

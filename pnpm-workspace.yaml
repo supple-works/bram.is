@@ -1,0 +1,13 @@
+shellEmulator: true
+
+trustPolicy: no-downgrade
+
+packages:
+  - packages/*
+
+ignoredBuiltDependencies:
+  - "@parcel/watcher"
+  - esbuild
+
+onlyBuiltDependencies:
+  - sharp

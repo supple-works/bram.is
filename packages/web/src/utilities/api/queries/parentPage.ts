@@ -17,7 +17,7 @@ export interface ParentPageProps {
 	};
 }
 
-export const parentPageQuery = (): string => {
+export function parentPageQuery(): string {
 	return `parentPage->{
 		"slug": slug.current,
 		"title": select(
@@ -42,4 +42,4 @@ export const parentPageQuery = (): string => {
 			},
 		},
 	}`;
-};
+}

@@ -1,6 +1,7 @@
-import { customBlockQuery, type CustomBlockProps, type ImageProps } from '.';
+import type { CustomBlockProps, ImageProps } from ".";
+import { customBlockQuery } from ".";
 
-export type ExperienceProps = {
+export interface ExperienceProps {
 	title: string;
 	employmentType: string;
 	company: string;
@@ -8,11 +9,11 @@ export type ExperienceProps = {
 	image?: ImageProps;
 	dateStart: string;
 	dateEnd?: string;
-	content?: CustomBlockProps['value'];
-};
+	content?: CustomBlockProps["value"];
+}
 
 export function experienceQuery({
-	name = 'experience',
+	name = "experience",
 }: {
 	name?: string;
 }): string {
@@ -24,6 +25,6 @@ export function experienceQuery({
 		image,
 		dateStart,
 		dateEnd,
-		${customBlockQuery({ name: 'content' })}
+		${customBlockQuery({ name: "content" })}
 	}`;
 }

@@ -1,16 +1,16 @@
 ---
-import { Mark } from 'astro-portabletext/components';
-import { type ContentBlockProps } from '..';
-import ContentBlock from '../ContentBlock.astro';
-import type { ParentPageProps } from 'src/utilities/api/queries';
-import { getFullPageUrl } from 'src/utilities/api/helpers/getParentPages';
-import { getLocaleFromURL } from 'src/utilities/locale';
-import { parseLink } from 'src/utilities/link';
+import { Mark } from "astro-portabletext/components";
+import { type ContentBlockProps } from "..";
+import ContentBlock from "../ContentBlock.astro";
+import type { ParentPageProps } from "src/utilities/api/queries";
+import { getFullPageUrl } from "src/utilities/api/helpers/getParentPages";
+import { getLocaleFromURL } from "src/utilities/locale";
+import { parseLink } from "src/utilities/link";
 
 type Props = Parameters<typeof Mark>[0];
 
 interface MarkProps {
-	children: ContentBlockProps['value'];
+	children: ContentBlockProps["value"];
 	type: string;
 	node?: {
 		style: string;
@@ -38,8 +38,8 @@ const href =
 	mark && mark.slugCollection
 		? parseLink(getFullPageUrl(mark.slugCollection), locale)
 		: mark && mark.href
-		? parseLink(mark.href, locale)
-		: undefined;
+			? parseLink(mark.href, locale)
+			: undefined;
 ---
 
 <a href={href}><ContentBlock value={children} /></a>

@@ -1,1 +1,1 @@
-export { default as Job } from './Job.astro';
+export { default as Job } from "./Job.astro";

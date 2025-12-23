@@ -1,11 +1,11 @@
+import type { Locale, localeCollection } from "src/utilities/locale";
+import type { ImageProps, LinkProps } from ".";
 import {
+
 	locales,
-	type localeCollection,
-	type Locale,
-} from 'src/utilities/locale';
-import type { ImageProps, LinkProps } from '.';
-import { imageQuery, linkQuery } from '.';
-import { getSanityData } from '../sanity';
+} from "src/utilities/locale";
+import { imageQuery, linkQuery } from ".";
+import { getSanityData } from "../sanity";
 
 export interface SettingsProps {
 	baseUrl: string;
@@ -37,14 +37,15 @@ export interface SettingsProps {
 }
 
 export type SettingsByLocale = {
-	[K in (typeof localeCollection)[number]['id']]: SettingsProps;
+	[K in (typeof localeCollection)[number]["id"]]: SettingsProps;
 };
 
-export const settingsQuery = ({ locale }: { locale: Locale }): string => `
+export function settingsQuery({ locale }: { locale: Locale }): string {
+	return `
 	*[_type == "settings" && language == "${locale.id}"][0]{
 		baseUrl,
 		metaTitleSuffix,
-		${imageQuery({ name: 'ogImage' })},
+		${imageQuery({ name: "ogImage" })},
 		labels{
 			name,
 			dateOfBirth,
@@ -71,10 +72,12 @@ export const settingsQuery = ({ locale }: { locale: Locale }): string => `
 			country,
 		},
 	}`;
+}
 
 let settingsTranslated: SettingsByLocale;
 async function storeSettings() {
-	if (settingsTranslated) return;
+	if (settingsTranslated)
+		return;
 
 	settingsTranslated = await Object.entries(locales).reduce(
 		async (acc, [, value]) => ({

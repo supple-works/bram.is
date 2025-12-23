@@ -1,1 +1,1 @@
-export { default as LayerSidebar } from './LayerSidebar.astro';
+export { default as LayerSidebar } from "./LayerSidebar.astro";
