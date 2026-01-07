@@ -38,45 +38,39 @@
 	--font-heading: var(--font-body);
 
 	/**
-	* Weights
-	*/
-	--font-weight-heading: var(--font-weight-bold);
-
-	/**
 	* Typography
 	*/
 	--text-*: initial;
-	/* @link https://utopia.fyi/type/calculator?c=320,16,1.2,1440,24,1.414,5,1,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l|2xs-2xl|m-3xl|m-2xl&g=s,l,xl,12 */
-	/* Step -2: 13.8889px → 12.0036px */
-	--step--2: clamp(0.7502rem, 0.9017rem + -0.1683vw, 0.8681rem);
-	/* Step -1: 16.6667px → 16.9731px */
-	--step--1: clamp(1.0417rem, 1.0362rem + 0.0274vw, 1.0608rem);
-	/* Step 0: 20px → 24px */
-	--step-0: clamp(1.25rem, 1.1786rem + 0.3571vw, 1.5rem);
-	/* Step 1: 24px → 33.936px */
-	--step-1: clamp(1.5rem, 1.3226rem + 0.8871vw, 2.121rem);
-	/* Step 2: 28.8px → 47.9855px */
-	--step-2: clamp(1.8rem, 1.4574rem + 1.713vw, 2.9991rem);
-	/* Step 3: 34.56px → 67.8515px */
-	--step-3: clamp(2.16rem, 1.5655rem + 2.9725vw, 4.2407rem);
-	/* Step 4: 41.472px → 95.942px */
-	--step-4: clamp(2.592rem, 1.6193rem + 4.8634vw, 5.9964rem);
-	/* Step 5: 49.7664px → 135.662px */
-	--step-5: clamp(3.1104rem, 1.5765rem + 7.6693vw, 8.4789rem);
-	/* Step 6: 44px → 136px | 320 -> 1920 */
-	--step-6: clamp(2.75rem, 1.1071rem + 8.2143vw, 8.5rem);
-	/* Step 6: 44px → 136px | 320 -> 1920 CQI */
-	--step-6-cq: clamp(2.75rem, 1.1071rem + 8.2143cqi, 8.5rem);
+	/* @link https://utopia.fyi/type/calculator?c=360,16,1.25,1240,20,1.25,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+	/* Step -2: 10.24px → 12.8px */
+	--step--2: clamp(0.64rem, 0.5745rem + 0.2909vw, 0.8rem);
+	/* Step -1: 12.8px → 16px */
+	--step--1: clamp(0.8rem, 0.7182rem + 0.3636vw, 1rem);
+	/* Step 0: 16px → 20px */
+	--step-0: clamp(1rem, 0.8977rem + 0.4545vw, 1.25rem);
+	/* Step 1: 20px → 25px */
+	--step-1: clamp(1.25rem, 1.1222rem + 0.5682vw, 1.5625rem);
+	/* Step 2: 25px → 31.25px */
+	--step-2: clamp(1.5625rem, 1.4027rem + 0.7102vw, 1.9531rem);
+	/* Step 3: 31.25px → 39.0625px */
+	--step-3: clamp(1.9531rem, 1.7534rem + 0.8878vw, 2.4414rem);
+	/* Step 4: 39.0625px → 48.8281px */
+	--step-4: clamp(2.4414rem, 2.1917rem + 1.1097vw, 3.0518rem);
+	/* Step 5: 48.8281px → 61.0352px */
+	--step-5: clamp(3.0518rem, 2.7396rem + 1.3872vw, 3.8147rem);
+	/* Step 6: 61.0352px → 76.2939px */
+	--step-6: clamp(3.8147rem, 3.4246rem + 1.734vw, 4.7684rem);
+	--step-6-cq: clamp(3.8147rem, 3.4246rem + 1.734cqi, 4.7684rem);
 
 	--text-base: var(--step-0);
 	--text-tiny: var(--step--2);
 	--text-small: var(--step--1);
 	--text-huge: var(--step-6);
 	--text-huge-cq: var(--step-6-cq);
-	--text-heading-1: var(--step-4);
-	--text-heading-2: var(--step-3);
-	--text-heading-3: var(--step-2);
-	--text-heading-4: var(--step-1);
+	--text-heading-1: var(--step-3);
+	--text-heading-2: var(--step-2);
+	--text-heading-3: var(--step-1);
+	--text-heading-4: var(--step-0);
 	--text-heading-5: var(--step-0);
 	--text-heading-6: var(--step-0);
 
@@ -109,6 +103,9 @@
 	--font-weight-medium: 500;
 	--font-weight-semibold: 600;
 	--font-weight-bold: 700;
+
+	--font-weight-body: var(--font-weight-normal);
+	--font-weight-heading: var(--font-weight-semibold);
 
 	/*
 	Measure
