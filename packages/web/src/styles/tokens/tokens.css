@@ -34,7 +34,7 @@
 	* Fonts
 	*/
 	--font-*: initial;
-	--font-body: "Brockmann", system-ui;
+	--font-body: "Quablo", system-ui;
 	--font-heading: var(--font-body);
 
 	/**
@@ -99,13 +99,16 @@
 	* Font weights
 	*/
 	--font-weight-*: initial;
+	--font-weight-thin: 100;
+	--font-weight-extralight: 200;
+	--font-weight-light: 300;
 	--font-weight-normal: 400;
 	--font-weight-medium: 500;
 	--font-weight-semibold: 600;
 	--font-weight-bold: 700;
 
-	--font-weight-body: var(--font-weight-normal);
-	--font-weight-heading: var(--font-weight-semibold);
+	--font-weight-body: var(--font-weight-light);
+	--font-weight-heading: var(--font-weight-normal);
 
 	/*
 	Measure
