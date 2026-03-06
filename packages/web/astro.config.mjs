@@ -1,11 +1,11 @@
 import process from "node:process";
 import sanity from "@sanity/astro";
-import tailwindcss from "@tailwindcss/vite";
+import sugarcube from "@sugarcube-sh/vite";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 
-const { PUBLIC_SANITY_STUDIO_PROJECT_ID, PUBLIC_SANITY_STUDIO_DATASET }
-	= loadEnv(import.meta.env.MODE, process.cwd(), "");
+const { PUBLIC_SANITY_STUDIO_PROJECT_ID, PUBLIC_SANITY_STUDIO_DATASET } =
+	loadEnv(import.meta.env.MODE, process.cwd(), "");
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,6 +22,12 @@ export default defineConfig({
 		}),
 	],
 	vite: {
-		plugins: [tailwindcss()],
+		plugins: [
+			sugarcube({
+				unoOptions: {
+					outputToCssLayers: true,
+				},
+			}),
+		],
 	},
 });

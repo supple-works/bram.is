@@ -10,9 +10,17 @@ const { class: className, color, accentColor, ...attrs } = Astro.props;
 ---
 
 <div
-	class={`c-swatch | u-color--${color}${className ? ` | ${className}` : ""}`}
+	class={`c-swatch${className ? ` | ${className}` : ""}`}
 	{...attrs}
-	style={`--c-swatch-color: var(--s-color--${color})`}
+	style={`--c-swatch-color: var(--color--${color})`}
 >
 	<p>{color}</p>
 </div>
+
+<style>
+	.c-swatch {
+		background-color: var(--c-swatch-color);
+		aspect-ratio: 1 / 1;
+		inline-size: var(--space-2xl-3xl);
+	}
+</style>

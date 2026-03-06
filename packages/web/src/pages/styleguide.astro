@@ -1,12 +1,25 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import { Swatch } from "@components/styleguide";
+
+import StyleDictionary from "style-dictionary";
+import { convertTokenData } from "style-dictionary/utils";
+
+const sd = new StyleDictionary({
+	source: ["src/design-tokens/**/*.json"],
+});
+await sd.hasInitialized;
+const flatArray = convertTokenData(sd.tokens, { output: "array" });
+
+console.log("flatArray", flatArray);
+// console.log(sd.tokens);
 ---
 
 <Layout
 	metaData={{
 		title: "Styleguide",
-		description: "bram.is styleguide, depicting the design language used on the website.",
+		description:
+			"bram.is styleguide, depicting the design language used on the website.",
 	}}
 >
 	<div>
@@ -66,9 +79,10 @@ import { Swatch } from "@components/styleguide";
 					<small>Small</small>
 
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia facilis modi vero fuga praesentium!
-						Nesciunt atque maiores, laboriosam neque, eveniet voluptatum velit fugiat corrupti deleniti error nobis
-						cupiditate nemo temporibus?
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
+						facilis modi vero fuga praesentium! Nesciunt atque maiores,
+						laboriosam neque, eveniet voluptatum velit fugiat corrupti deleniti
+						error nobis cupiditate nemo temporibus?
 					</p>
 				</section>
 
@@ -76,14 +90,18 @@ import { Swatch } from "@components/styleguide";
 					<h2>Spacing</h2>
 					<ul role="list">
 						{
-							["nano", "micro", "milli", "base", "kilo", "mega", "giga", "tera"].map((item) => (
-								<li>
-									<span>
-										<h3>{item}</h3>
-										<code>--s-space-{item}</code>
-									</span>
-								</li>
-							))
+							// spacingNames.map((item) => (
+							// 	<li>
+							// 		<div
+							// 			class={`circle`}
+							// 			style={`inline-size: var(--space-${item})`}
+							// 		/>
+							// 		<span>
+							// 			<h3>{item}</h3>
+							// 			<code>--space-{item}</code>
+							// 		</span>
+							// 	</li>
+							// ))
 						}
 					</ul>
 				</section>
@@ -91,3 +109,11 @@ import { Swatch } from "@components/styleguide";
 		</div>
 	</div>
 </Layout>
+
+<style>
+	.circle {
+		block-size: var(--space-md);
+		background-color: var(--color-accent-fill-quiet);
+		border: 1px solid var(--color-accent-border-quiet);
+	}
+</style>

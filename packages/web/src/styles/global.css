@@ -1,19 +1,16 @@
 @layer theme, global, composition, block, utilities;
 
-@import "tailwindcss/theme.css" layer(theme);
-@import "./tokens/tokens.css" layer(theme);
+/*@import './tokens/tokens.css' layer(theme);*/
 
-@import "./global/reset.css" layer(global);
+@import "./global/global.css" layer(global);
 @import "./global/fonts.css" layer(global);
 @import "./global/typography.css" layer(global);
 
-@import "./composition/grid.css" layer(composition);
-@import "./composition/retain.css" layer(composition);
-@import "./composition/region.css" layer(composition);
-@import "./composition/switcher.css" layer(composition);
-@import "./composition/cluster.css" layer(composition);
-@import "./composition/flow.css" layer(composition);
-@import "./composition/repel.css" layer(composition);
-@import "./composition/sidebar.css" layer(composition);
-
-@import "tailwindcss/utilities.css" layer(utilities);
+@import "./compositions/grid.css" layer(composition);
+@import "./compositions/retain.css" layer(composition);
+@import "./compositions/region.css" layer(composition);
+@import "./compositions/switcher.css" layer(composition);
+@import "./compositions/cluster.css" layer(composition);
+@import "./compositions/flow.css" layer(composition);
+@import "./compositions/repel.css" layer(composition);
+@import "./compositions/sidebar.css" layer(composition);
