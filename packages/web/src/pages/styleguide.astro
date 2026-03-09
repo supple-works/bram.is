@@ -9,10 +9,17 @@ const sd = new StyleDictionary({
 	source: ["src/design-tokens/**/*.json"],
 });
 await sd.hasInitialized;
-const flatArray = convertTokenData(sd.tokens, { output: "array" });
+const flatTokens = convertTokenData(sd.tokens, {
+	output: "array",
+	usesDtcg: true,
+});
 
-console.log("flatArray", flatArray);
-// console.log(sd.tokens);
+const colorTokens = flatTokens.filter(
+	(token) =>
+		token["$type"] === "color" && token.filePath.endsWith("/colors.json"),
+);
+
+console.log("colorTokens", colorTokens);
 ---
 
 <Layout
@@ -35,13 +42,21 @@ console.log("flatArray", flatArray);
 				<section id="colors">
 					<h2>Colors</h2>
 
-					<ul role="list">
-						<li>
-							<Swatch color="primary" />
-						</li>
-						<li>
-							<Swatch color="secondary" />
-						</li>
+					<ul role="list" class="grid-auto">
+						{
+							colorTokens
+								.filter((token) => token.key)
+								.map((token) => (
+									<li>
+										<Swatch
+											color={token.key
+												.replace("{", "")
+												.replace("}", "")
+												.replaceAll(".", "-")}
+										/>
+									</li>
+								))
+						}
 					</ul>
 				</section>
 
