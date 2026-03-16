@@ -9,11 +9,7 @@ interface Props extends HTMLAttributes<"div"> {
 const { class: className, color, accentColor, ...attrs } = Astro.props;
 ---
 
-<div
-	class={`c-swatch${className ? ` | ${className}` : ""}`}
-	{...attrs}
-	style={`--c-swatch-color: var(--${color})`}
->
+<div class={`c-swatch${className ? ` | ${className}` : ""}`} {...attrs} style={`--c-swatch-color: var(--${color})`}>
 	<p>{color}</p>
 </div>
 

@@ -14,10 +14,7 @@ const flatTokens = convertTokenData(sd.tokens, {
 	usesDtcg: true,
 });
 
-const colorTokens = flatTokens.filter(
-	(token) =>
-		token["$type"] === "color" && token.filePath.endsWith("/colors.json"),
-);
+const colorTokens = flatTokens.filter((token) => token["$type"] === "color" && token.filePath.endsWith("/colors.json"));
 
 console.log("colorTokens", colorTokens);
 ---
@@ -25,8 +22,7 @@ console.log("colorTokens", colorTokens);
 <Layout
 	metaData={{
 		title: "Styleguide",
-		description:
-			"bram.is styleguide, depicting the design language used on the website.",
+		description: "bram.is styleguide, depicting the design language used on the website.",
 	}}
 >
 	<div>
@@ -48,12 +44,7 @@ console.log("colorTokens", colorTokens);
 								.filter((token) => token.key)
 								.map((token) => (
 									<li>
-										<Swatch
-											color={token.key
-												.replace("{", "")
-												.replace("}", "")
-												.replaceAll(".", "-")}
-										/>
+										<Swatch color={token.key.replace("{", "").replace("}", "").replaceAll(".", "-")} />
 									</li>
 								))
 						}
@@ -94,10 +85,9 @@ console.log("colorTokens", colorTokens);
 					<small>Small</small>
 
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
-						facilis modi vero fuga praesentium! Nesciunt atque maiores,
-						laboriosam neque, eveniet voluptatum velit fugiat corrupti deleniti
-						error nobis cupiditate nemo temporibus?
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia facilis modi vero fuga praesentium!
+						Nesciunt atque maiores, laboriosam neque, eveniet voluptatum velit fugiat corrupti deleniti error nobis
+						cupiditate nemo temporibus?
 					</p>
 				</section>
 

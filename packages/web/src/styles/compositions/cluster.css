@@ -15,9 +15,9 @@ Can be any acceptable flexbox alignment value.
 */
 
 .cluster {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--cluster-gap, 0.5rem);
-    justify-content: var(--cluster-horizontal-alignment, flex-start);
-    align-items: var(--cluster-vertical-alignment, center);
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--cluster-gap, 0.5rem);
+	justify-content: var(--cluster-horizontal-alignment, flex-start);
+	align-items: var(--cluster-vertical-alignment, center);
 }

@@ -6,10 +6,10 @@ This project uses pnpm workspaces to manage multiple packages. The workspaces ar
 
 ### Package map
 
-| Package                      | Path                            | Purpose                       |
-| ---------------------------- | ------------------------------- | ----------------------------- |
-| `web`                        | `packages/web`                  | The front-end web application |
-| `cms`                        | `packages/cms`                  | The content management system |
+| Package | Path           | Purpose                       |
+| ------- | -------------- | ----------------------------- |
+| `web`   | `packages/web` | The front-end web application |
+| `cms`   | `packages/cms` | The content management system |
 
 ### Web
 

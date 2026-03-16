@@ -42,7 +42,7 @@ async function createSingletons() {
 					_ref: translation._id,
 				},
 			})),
-			schemaTypes: Array.from(new Set(translations.map(translation => translation._type))),
+			schemaTypes: [...new Set(translations.map(translation => translation._type))],
 		};
 
 		return [metadata, ...translations];

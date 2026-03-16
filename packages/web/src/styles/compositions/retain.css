@@ -14,7 +14,9 @@ A common wrapper/container
 	--_retain-margin-inline-end: var(--retain-margin-inline-end, var(--_retain-margin-inline));
 	container: retain / inline-size;
 	inline-size: 100%;
-	max-inline-size: calc(var(--_retain-max-inline-size) + var(--_retain-padding-inline-start) + var(--_retain-padding-inline-end));
+	max-inline-size: calc(
+		var(--_retain-max-inline-size) + var(--_retain-padding-inline-start) + var(--_retain-padding-inline-end)
+	);
 	padding-inline: var(--_retain-padding-inline-start) var(--_retain-padding-inline-end);
 	margin-inline: var(--_retain-margin-inline-start) var(--_retain-margin-inline-end);
 }
@@ -42,7 +44,10 @@ A common wrapper/container
 }
 
 :where(.retain[data-safe-area]) {
-	--_retain-padding-inline-start: calc(var(--retain-padding-inline-start, var(--_retain-padding-inline)) + env(safe-area-inset-left));
-	--_retain-padding-inline-end: calc(var(--retain-padding-inline-end, var(--_retain-padding-inline)) + env(safe-area-inset-right));
+	--_retain-padding-inline-start: calc(
+		var(--retain-padding-inline-start, var(--_retain-padding-inline)) + env(safe-area-inset-left)
+	);
+	--_retain-padding-inline-end: calc(
+		var(--retain-padding-inline-end, var(--_retain-padding-inline)) + env(safe-area-inset-right)
+	);
 }
-

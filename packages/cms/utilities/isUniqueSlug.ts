@@ -1,5 +1,7 @@
 import client from "./client";
 
+const draftIdRegex = /^drafts\./;
+
 export async function isUniqueSlug({
 	slug,
 	context,
@@ -10,7 +12,7 @@ export async function isUniqueSlug({
 	type?: string;
 }) {
 	const { document } = context;
-	const id = document._id.replace(/^drafts\./, "");
+	const id = document._id.replace(draftIdRegex, "");
 	const params = {
 		draft: `drafts.${id}`,
 		published: id,

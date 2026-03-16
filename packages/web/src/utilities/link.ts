@@ -1,6 +1,8 @@
 import type { Locale } from "./locale";
 import { localeCollection } from "./locale";
 
+const urlReplaceRegex = /^\//;
+
 export function isExternalUrl(url: string) {
 	return url.includes("//");
 }
@@ -19,7 +21,7 @@ export function prefixUrlWithlocale(href: string, locale: Locale) {
 	&& !href.startsWith("mailto:")
 		? `${
 			localeCollection[0].id !== locale.id ? locale.urlPrefix : ""
-		}/${href.replace(/^\//, "")}`
+		}/${href.replace(urlReplaceRegex, "")}`
 		: href;
 }
 

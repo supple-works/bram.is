@@ -1,4 +1,4 @@
-export function filterReference({ document}: { document: any }) {
+export function filterReference({ document }: { document: any }) {
 	return {
 		filter: `!defined(parent) && _id != $id && (!defined(language) || language == $lang)`,
 		params: {

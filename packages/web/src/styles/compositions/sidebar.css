@@ -1,4 +1,4 @@
-/* 
+/*
 SIDEBAR
 More info: https://piccalil.li/blog/a-revisit-of-the-every-layout-sidebar-with-has-and-selector-performance/ and https://every-layout.dev/layouts/sidebar/
 A layout that allows you to have a flexible main content area
@@ -17,19 +17,19 @@ between the sidebar and main content.
 */
 
 :has(> .sidebar) {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--sidebar-gap, 1rem);
-    align-items: var(--align, flex-start);
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--sidebar-gap, 1rem);
+	align-items: var(--align, flex-start);
 }
 
 .sidebar {
-    flex-basis: var(--sidebar-size, 20rem);
-    flex-grow: 1;
+	flex-basis: var(--sidebar-size, 20rem);
+	flex-grow: 1;
 }
 
 :has(> .sidebar) > :not(.sidebar) {
-    flex-basis: 0;
-    flex-grow: 999;
-    min-inline-size: var(--sidebar-wrap-at, 50%);
+	flex-basis: 0;
+	flex-grow: 999;
+	min-inline-size: var(--sidebar-wrap-at, 50%);
 }
