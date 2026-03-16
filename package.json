@@ -26,6 +26,7 @@
 	"devDependencies": {
 		"@antfu/eslint-config": "^7.7.2",
 		"@sugarcube-sh/cli": "^0.1.1",
+		"@unocss/eslint-plugin": "^66.6.6",
 		"eslint-plugin-format": "^2.0.1",
 		"prettier-plugin-astro": "^0.14.1"
 	}

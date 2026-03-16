@@ -4,6 +4,7 @@ export default antfu({
 	formatters: true,
 	astro: true,
 	typescript: true,
+	unocss: true,
 	stylistic: {
 		indent: "tab",
 		semi: true,
