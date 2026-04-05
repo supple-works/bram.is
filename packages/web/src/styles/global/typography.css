@@ -1,8 +1,8 @@
 :where(h1, h2, h3, h4, h5, h6) {
-	font-family: var(--heading-font, var(--font-heading));
-	font-weight: var(--heading-font-weight, var(--font-weight-heading));
-	letter-spacing: var(--heading-kerning, var(--kerning-base));
-	line-height: var(--heading-line-height, var(--leading-fine));
+	font-family: var(--heading-family, "system-ui");
+	font-weight: var(--heading-weight, bold);
+	letter-spacing: var(--heading-tracking, 0);
+	line-height: var(--heading-leading, 1.5);
 	overflow-wrap: anywhere;
 	text-wrap: balance;
 }

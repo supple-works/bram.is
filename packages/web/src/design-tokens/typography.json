@@ -1,0 +1,83 @@
+{
+	"font": {
+		"family": {
+			"$type": "fontFamily",
+			"sans": {
+				"$value": [
+					"Brockmann",
+					"system-ui"
+				]
+			}
+		},
+		"weight": {
+			"$type": "fontWeight",
+			"normal": { "$value": 400 },
+			"medium": { "$value": 500 },
+			"semibold": { "$value": 600 },
+			"bold": { "$value": 700 }
+		}
+	},
+	"leading": {
+		"$type": "number",
+		"none": { "$value": 1 },
+		"tight": { "$value": 1.25 },
+		"normal": { "$value": 1.5 },
+		"relaxed": { "$value": 1.75 }
+	},
+	"tracking": {
+		"$type": "dimension",
+		"tight": { "$value": { "value": -0.025, "unit": "rem" } },
+		"normal": { "$value": { "value": 0, "unit": "rem" } },
+		"wide": { "$value": { "value": 0.025, "unit": "rem" } }
+	},
+	"text": {
+		"$type": "dimension",
+		"base": {
+			"$value": { "value": 1, "unit": "rem" }
+		}
+	},
+	"heading": {
+		"family": {
+			"$type": "fontFamily",
+			"$value": "{font.family.sans}"
+		},
+		"weight": {
+			"$type": "fontWeight",
+			"$value": "{font.weight.bold}"
+		},
+		"leading": {
+			"$type": "number",
+			"$value": "{leading.normal}"
+		},
+		"tracking": {
+			"$type": "dimension",
+			"$value": "{tracking.normal}"
+		},
+		"size": {
+			"$type": "dimension",
+			"$value": "{text.base}"
+		}
+	},
+	"body": {
+		"family": {
+			"$type": "fontFamily",
+			"$value": "{font.family.sans}"
+		},
+		"weight": {
+			"$type": "fontWeight",
+			"$value": "{font.weight.normal}"
+		},
+		"leading": {
+			"$type": "number",
+			"$value": "{leading.normal}"
+		},
+		"tracking": {
+			"$type": "dimension",
+			"$value": "{tracking.normal}"
+		},
+		"size": {
+			"$type": "dimension",
+			"$value": "{text.base}"
+		}
+	}
+}

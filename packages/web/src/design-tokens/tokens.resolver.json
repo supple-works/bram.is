@@ -4,7 +4,7 @@
 		{
 			"type": "set",
 			"name": "base",
-			"sources": [{ "$ref": "./core.colors.json" }, { "$ref": "./colors.json" }]
+			"sources": [{ "$ref": "./core.colors.json" }, { "$ref": "./colors.json" }, { "$ref": "./typography.json" }]
 		}
 	]
 }
