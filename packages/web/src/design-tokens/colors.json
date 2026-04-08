@@ -14,6 +14,9 @@
 			"background": {
 				"$value": "{core.color.mandy.500}"
 			}
+		},
+		"highlight": {
+			"$value": "{core.color.mandy.500}"
 		}
 	}
 }

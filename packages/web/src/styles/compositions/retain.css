@@ -5,7 +5,7 @@ A common wrapper/container
 :where(.retain) {
 	--_retain-max-inline-size: var(--retain-max-inline-size, 100%);
 
-	--_retain-padding-inline: var(--retain-padding-inline, var(--spacing-bleed, 1.5rem));
+	--_retain-padding-inline: var(--retain-padding-inline, var(--space-bleed, 1.5rem));
 	--_retain-padding-inline-start: var(--retain-padding-inline-start, var(--_retain-padding-inline));
 	--_retain-padding-inline-end: var(--retain-padding-inline-end, var(--_retain-padding-inline));
 

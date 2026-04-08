@@ -1,5 +1,3 @@
-@layer preflights, theme, global, composition, block, utilities;
-
 /*@import './tokens/tokens.css' layer(theme);*/
 
 @import "./global/reset.css" layer(global);

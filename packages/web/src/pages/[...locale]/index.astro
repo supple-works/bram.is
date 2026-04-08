@@ -20,5 +20,22 @@ const pageData: PageHomeProps = pagesData.filter((page) => page.localeID === loc
 ---
 
 <Layout metaData={pageData.metaData} skipMetaTitleSuffix alternativeTranslations={pageData.alternativeTranslations}>
-	<h1>{pageData.title}</h1>
+	<div class="region">
+		<div class="retain">
+			<h1 class="hero__title">bram<span class="text-highlight">.</span>is</h1>
+		</div>
+	</div>
 </Layout>
+
+<style>
+	.hero__title {
+		font-size: var(--text-huge);
+		text-transform: lowercase;
+	}
+
+	.region {
+		min-block-size: 100svh;
+		display: flex;
+		align-items: end;
+	}
+</style>

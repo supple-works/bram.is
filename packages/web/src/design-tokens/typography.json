@@ -1,20 +1,85 @@
 {
+	"core": {
+		"text": {
+			"step": {
+				"$type": "fluidDimension",
+				"-2": {
+					"$value": {
+						"min": { "value": 0.64, "unit": "rem" },
+						"max": { "value": 0.8, "unit": "rem" }
+					}
+				},
+				"-1": {
+					"$value": {
+						"min": { "value": 0.8, "unit": "rem" },
+						"max": { "value": 1, "unit": "rem" }
+					}
+				},
+				"0": {
+					"$value": {
+						"min": { "value": 1, "unit": "rem" },
+						"max": { "value": 1.25, "unit": "rem" }
+					}
+				},
+				"1": {
+					"$value": {
+						"min": { "value": 1.25, "unit": "rem" },
+						"max": { "value": 1.5625, "unit": "rem" }
+					}
+				},
+				"2": {
+					"$value": {
+						"min": { "value": 1.5625, "unit": "rem" },
+						"max": { "value": 1.9531, "unit": "rem" }
+					}
+				},
+				"3": {
+					"$value": {
+						"min": { "value": 1.9531, "unit": "rem" },
+						"max": { "value": 2.4414, "unit": "rem" }
+					}
+				},
+				"4": {
+					"$value": {
+						"min": { "value": 2.4414, "unit": "rem" },
+						"max": { "value": 3.0518, "unit": "rem" }
+					}
+				},
+				"5": {
+					"$value": {
+						"min": { "value": 3.0518, "unit": "rem" },
+						"max": { "value": 3.8147, "unit": "rem" }
+					}
+				},
+				"6": {
+					"$value": {
+						"min": { "value": 3.8147, "unit": "rem" },
+						"max": { "value": 4.7684, "unit": "rem" }
+					}
+				}
+			}
+		}
+	},
 	"font": {
 		"family": {
 			"$type": "fontFamily",
 			"sans": {
 				"$value": [
-					"Brockmann",
+					"Alcyone",
 					"system-ui"
 				]
 			}
 		},
 		"weight": {
 			"$type": "fontWeight",
+			"thin": { "$value": 100 },
+			"extralight": { "$value": 200 },
+			"light": { "$value": 300 },
 			"normal": { "$value": 400 },
 			"medium": { "$value": 500 },
 			"semibold": { "$value": 600 },
-			"bold": { "$value": 700 }
+			"bold": { "$value": 700 },
+			"black": { "$value": 900 }
 		}
 	},
 	"leading": {
@@ -31,10 +96,16 @@
 		"wide": { "$value": { "value": 0.025, "unit": "rem" } }
 	},
 	"text": {
-		"$type": "dimension",
-		"base": {
-			"$value": { "value": 1, "unit": "rem" }
-		}
+		"base": { "$value": "{core.text.step.0}" },
+		"tiny": { "$value": "{core.text.step.-2}" },
+		"small": { "$value": "{core.text.step.-1}" },
+		"huge": { "$value": "{core.text.step.6}" },
+		"heading-1": { "$value": "{core.text.step.3}" },
+		"heading-2": { "$value": "{core.text.step.2}" },
+		"heading-3": { "$value": "{core.text.step.1}" },
+		"heading-4": { "$value": "{core.text.step.0}" },
+		"heading-5": { "$value": "{core.text.step.0}" },
+		"heading-6": { "$value": "{core.text.step.0}" }
 	},
 	"heading": {
 		"family": {
@@ -43,11 +114,11 @@
 		},
 		"weight": {
 			"$type": "fontWeight",
-			"$value": "{font.weight.bold}"
+			"$value": "{font.weight.semibold}"
 		},
 		"leading": {
 			"$type": "number",
-			"$value": "{leading.normal}"
+			"$value": "{leading.none}"
 		},
 		"tracking": {
 			"$type": "dimension",

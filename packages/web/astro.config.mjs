@@ -28,7 +28,25 @@ export default defineConfig({
 		plugins: [
 			sugarcube({
 				unoOptions: {
-					outputToCssLayers: true,
+					layers: {
+						imports: 0,
+						preflights: 1,
+						global: 2,
+						composition: 3,
+						block: 4,
+						shortcuts: 5,
+						default: 6,
+					},
+					outputToCssLayers: {
+						allLayers: true,
+						cssLayerName: (layer) => {
+							if (layer === "preflights")
+								return "theme";
+							if (layer === "default")
+								return "utilities";
+							return layer;
+						},
+					},
 				},
 			}),
 		],
