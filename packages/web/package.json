@@ -12,18 +12,18 @@
 		"css:generate": "sugarcube generate"
 	},
 	"dependencies": {
-		"astro": "^6.0.3",
+		"astro": "^6.1.8",
 		"astro-portabletext": "^0.13.0",
 		"class-variance-authority": "^0.7.1",
 		"lightningcss": "^1.32.0",
-		"slugify": "^1.6.6",
-		"style-dictionary": "^5.3.3",
-		"vite": "^7.3.1"
+		"slugify": "^1.6.9",
+		"style-dictionary": "^5.4.0",
+		"vite": "^7.3.2"
 	},
 	"devDependencies": {
-		"@sanity/astro": "^3.2.11",
-		"@sanity/client": "^7.17.0",
-		"@sanity/image-url": "^2.0.3",
+		"@sanity/astro": "^3.3.1",
+		"@sanity/client": "^7.21.0",
+		"@sanity/image-url": "^2.1.1",
 		"@sugarcube-sh/cli": "^0.1.6",
 		"@sugarcube-sh/vite": "^0.1.7",
 		"postcss-custom-media": "^12.0.1",
