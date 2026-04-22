@@ -2,59 +2,104 @@
 	"core": {
 		"text": {
 			"step": {
-				"$type": "fluidDimension",
+				"$type": "dimension",
 				"-2": {
-					"$value": {
-						"min": { "value": 0.64, "unit": "rem" },
-						"max": { "value": 0.8, "unit": "rem" }
+					"$value": { "value": 0.64, "unit": "rem" },
+					"$extensions": {
+						"sh.sugarcube": {
+							"fluid": {
+								"min": { "value": 0.64, "unit": "rem" },
+								"max": { "value": 0.8, "unit": "rem" }
+							}
+						}
 					}
 				},
 				"-1": {
-					"$value": {
-						"min": { "value": 0.8, "unit": "rem" },
-						"max": { "value": 1, "unit": "rem" }
+					"$value": { "value": 0.8, "unit": "rem" },
+					"$extensions": {
+						"sh.sugarcube": {
+							"fluid": {
+								"min": { "value": 0.8, "unit": "rem" },
+								"max": { "value": 1, "unit": "rem" }
+							}
+						}
 					}
 				},
 				"0": {
-					"$value": {
-						"min": { "value": 1, "unit": "rem" },
-						"max": { "value": 1.25, "unit": "rem" }
+					"$value": { "value": 1, "unit": "rem" },
+					"$extensions": {
+						"sh.sugarcube": {
+							"fluid": {
+								"min": { "value": 1, "unit": "rem" },
+								"max": { "value": 1.25, "unit": "rem" }
+							}
+						}
 					}
 				},
 				"1": {
-					"$value": {
-						"min": { "value": 1.25, "unit": "rem" },
-						"max": { "value": 1.5625, "unit": "rem" }
+					"$value": { "value": 1.25, "unit": "rem" },
+					"$extensions": {
+						"sh.sugarcube": {
+							"fluid": {
+								"min": { "value": 1.25, "unit": "rem" },
+								"max": { "value": 1.5625, "unit": "rem" }
+							}
+						}
 					}
 				},
 				"2": {
-					"$value": {
-						"min": { "value": 1.5625, "unit": "rem" },
-						"max": { "value": 1.9531, "unit": "rem" }
+					"$value": { "value": 1.5625, "unit": "rem" },
+					"$extensions": {
+						"sh.sugarcube": {
+							"fluid": {
+								"min": { "value": 1.5625, "unit": "rem" },
+								"max": { "value": 1.9531, "unit": "rem" }
+							}
+						}
 					}
 				},
 				"3": {
-					"$value": {
-						"min": { "value": 1.9531, "unit": "rem" },
-						"max": { "value": 2.4414, "unit": "rem" }
+					"$value": { "value": 1.9531, "unit": "rem" },
+					"$extensions": {
+						"sh.sugarcube": {
+							"fluid": {
+								"min": { "value": 1.9531, "unit": "rem" },
+								"max": { "value": 2.4414, "unit": "rem" }
+							}
+						}
 					}
 				},
 				"4": {
-					"$value": {
-						"min": { "value": 2.4414, "unit": "rem" },
-						"max": { "value": 3.0518, "unit": "rem" }
+					"$value": { "value": 2.4414, "unit": "rem" },
+					"$extensions": {
+						"sh.sugarcube": {
+							"fluid": {
+								"min": { "value": 2.4414, "unit": "rem" },
+								"max": { "value": 3.0518, "unit": "rem" }
+							}
+						}
 					}
 				},
 				"5": {
-					"$value": {
-						"min": { "value": 3.0518, "unit": "rem" },
-						"max": { "value": 3.8147, "unit": "rem" }
+					"$value": { "value": 3.0518, "unit": "rem" },
+					"$extensions": {
+						"sh.sugarcube": {
+							"fluid": {
+								"min": { "value": 3.0518, "unit": "rem" },
+								"max": { "value": 3.8147, "unit": "rem" }
+							}
+						}
 					}
 				},
 				"6": {
-					"$value": {
-						"min": { "value": 3.8147, "unit": "rem" },
-						"max": { "value": 4.7684, "unit": "rem" }
+					"$value": { "value": 3.8147, "unit": "rem" },
+					"$extensions": {
+						"sh.sugarcube": {
+							"fluid": {
+								"min": { "value": 3.8147, "unit": "rem" },
+								"max": { "value": 4.7684, "unit": "rem" }
+							}
+						}
 					}
 				}
 			}
