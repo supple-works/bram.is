@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { filterReference } from "../../utilities/filterReference";
 
 export default defineType({
 	title: "Homepage",
@@ -28,6 +29,21 @@ export default defineType({
 			title: "Title",
 			name: "title",
 			type: "string",
+		}),
+
+		defineField({
+			title: "Payoffs",
+			name: "payoffs",
+			type: "array",
+			of: [
+				{
+					type: "reference",
+					to: [{ type: "payoff" }],
+					options: {
+						filter: filterReference,
+					},
+				},
+			],
 		}),
 	],
 });

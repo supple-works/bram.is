@@ -29,6 +29,7 @@ export default defineConfig({
 				"employmentType",
 				"page-home",
 				"page-cv",
+				"payoff",
 			],
 			weakReferences: true,
 		}),
