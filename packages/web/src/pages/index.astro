@@ -1,9 +1,0 @@
----
-import { getDataHome } from "src/utilities/api/pagehome";
-import IndexPage from "./[...locale]/index.astro";
-import { locales } from "src/utilities/locale";
-
-const pagesData = await getDataHome();
----
-
-<IndexPage locale={locales.english} pagesData={pagesData} />

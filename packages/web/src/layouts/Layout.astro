@@ -5,18 +5,20 @@ import { MetaData, type MetaDataProps } from "@components/elements";
 import "virtual:sugarcube.css";
 import "../styles/global.css";
 import type { PageProps } from "src/utilities/api/queries";
+import { getLocaleFromURL } from "src/utilities/locale";
+
+const locale = getLocaleFromURL(Astro.url.pathname);
 
 export interface Props extends HTMLAttributes<"html">, MetaDataProps {
-	lang?: string;
 	type?: string;
 	alternativeTranslations?: PageProps["alternativeTranslations"];
 }
 
-const { lang = "en", type, alternativeTranslations, metaData, skipMetaTitleSuffix } = Astro.props;
+const { type, alternativeTranslations, metaData, skipMetaTitleSuffix } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={lang} data-page-type={type}>
+<html lang={locale.id} data-page-type={type}>
 	<head>
 		<MetaData
 			metaData={metaData}
