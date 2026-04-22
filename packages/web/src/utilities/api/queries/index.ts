@@ -7,5 +7,6 @@ export * from "./metaDataQuery";
 export * from "./pageQuery";
 export * from "./pageReferenceQuery";
 export * from "./parentPage";
+export * from "./payoffQuery";
 export * from "./settingsQuery";
 export * from "./songQuery";

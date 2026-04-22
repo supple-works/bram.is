@@ -20,17 +20,31 @@ const pageData: PageHomeProps = pagesData.filter((page) => page.localeID === loc
 ---
 
 <Layout metaData={pageData.metaData} skipMetaTitleSuffix alternativeTranslations={pageData.alternativeTranslations}>
-	<div class="region">
+	<div class="hero | region">
 		<div class="retain">
-			<h1 class="hero__title">bram<span class="text-highlight">.</span>is</h1>
+			<h1 class="hero__title">
+				<span class="hero__start">bram<span class="text-highlight">.</span>is<span class="text-highlight">/</span></span><span class="hero__payoffs">{pageData.payoffs ? pageData.payoffs.map(payoff => <span>{payoff.name}</span>) : null}</span></h1>
 		</div>
 	</div>
 </Layout>
 
 <style>
+	.hero {}
+
 	.hero__title {
+		display: flex;
+		flex-wrap: wrap;
 		font-size: var(--text-huge);
 		text-transform: lowercase;
+	}
+
+	.hero__start {
+		white-space: nowrap;
+	}
+
+	.hero__payoffs {
+		display: flex;
+		flex-flow: column;
 	}
 
 	.region {
