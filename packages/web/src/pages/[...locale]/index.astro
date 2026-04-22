@@ -1,8 +1,8 @@
 ---
+import Layout from "@layouts/Layout.astro";
 import { getStaticPathsFromData } from "src/utilities/api/helpers/getStaticPathsFromData";
 import { getDataHome, type PageHomeProps } from "../../utilities/api/pagehome";
 import type { Locale } from "src/utilities/locale";
-import Layout from "@layouts/Layout.astro";
 
 // const pageData = await getDataHome();
 export async function getStaticPaths() {
