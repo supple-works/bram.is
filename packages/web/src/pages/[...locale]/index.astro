@@ -20,22 +20,45 @@ const pageData: PageHomeProps = pagesData.filter((page) => page.localeID === loc
 ---
 
 <Layout metaData={pageData.metaData} skipMetaTitleSuffix alternativeTranslations={pageData.alternativeTranslations}>
-	<div class="hero | region">
-		<div class="retain">
+	<div class="hero" style={{ '--length': pageData.payoffs?.length ?? 1 }}>
+		<div class="hero__inner | retain | region">
 			<h1 class="hero__title">
-				<span class="hero__start">bram<span class="text-highlight">.</span>is<span class="text-highlight">/</span></span><span class="hero__payoffs">{pageData.payoffs ? pageData.payoffs.map(payoff => <span>{payoff.name}</span>) : null}</span></h1>
+				<span class="hero__start">bram<span class="text-highlight" aria-hidden="true">.</span><span class="visually-hidden">{' '}</span>is<span class="text-highlight" aria-hidden="true">/</span></span>
+				<span class="hero__payoffs">
+					<span class="hero__payoffs-scroller">
+						{pageData.payoffs ? pageData.payoffs.map((payoff, index) => <span class="hero__payoff" data-index={index + 1} style={{ '--index': index }}>{payoff.name}{index !== pageData.payoffs.length - 1 && index !== pageData.payoffs.length - 2 ? (<span class="visually-hidden">, </span>) : null}{index === pageData.payoffs.length - 2 ? <span class="visually-hidden">& </span> : null}</span>) : null}
+					</span>
+				</span>
+			</h1>
 		</div>
 	</div>
 </Layout>
 
 <style>
 @layer block {
-	.hero {}
+	.hero {
+		--length: 1;
+		--hero-min-block-size: calc(200lvh * var(--length));
+		--hero-inner-min-block-size: 100lvh;
+		view-timeline-name: --hero;
+		min-block-size: var(--hero-min-block-size);
+	}
+
+	.hero__inner {
+		position: sticky;
+		display: flex;
+		align-items: end;
+		inset-block-start: var(--masthead-block-size, 0px);
+		min-block-size: calc(var(--hero-inner-min-block-size) - var(--masthead-block-size, 0px));
+	}
 
 	.hero__title {
+		--_hero-title-payoffs-correction: 0.20em;
+		--_hero-title-payoffs-skew: 20deg;
 		display: flex;
 		flex-wrap: wrap;
 		font-size: var(--text-huge);
+		line-height: 1.2;
 		text-transform: lowercase;
 	}
 
@@ -44,14 +67,65 @@ const pageData: PageHomeProps = pagesData.filter((page) => page.localeID === loc
 	}
 
 	.hero__payoffs {
-		display: flex;
-		flex-flow: column;
+		display: block;
+		block-size: 1lh;
+		overflow: hidden;
+		transform: skew(calc(var(--_hero-title-payoffs-skew) * -1));
+		margin-inline-start: calc(var(--_hero-title-payoffs-correction) * -1);
+		padding-inline: var(--_hero-title-payoffs-correction);
 	}
 
-	.region {
-		min-block-size: 100svh;
-		display: flex;
-		align-items: end;
+	.hero__payoffs-scroller {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+		position: relative;
+		transform: skew(var(--_hero-title-payoffs-skew));
 	}
+
+	.hero__payoff {
+		--index: 0;
+		--_index: calc(--index + 1);
+		--_cover: calc(var(--_index) * (100% / var(--length)));
+		display: block;
+		position: relative;
+		animation-fill-mode: both;
+		animation-timing-function: linear;
+		animation-timeline: --hero;
+		animation-name: animate-in-and-out;
+		transform: translateX(calc(-100% - 0.4em));
+		animation-range: cover 10% exit -800%;
+		grid-area: 1 / 1;
+
+		&[data-index="2"] {
+			animation-range: cover 20% exit -600%;
+		}
+
+		&[data-index="3"] {
+			animation-range: cover 40% exit -400%;
+		}
+
+		&[data-index="4"] {
+			animation-range: cover 60% exit -200%;
+		}
+
+		&[data-index="5"] {
+			animation-range: cover 80% exit 0%;
+		}
+	}
+
+	@keyframes animate-in-and-out {
+		from  {
+			transform: translateX(calc(-100% - 0.4em));
+		}
+
+		20%, 80% {
+			transform: translateY(0);
+		}
+
+		to {
+			transform: translateX(calc(-100% - 0.4em));
+		}
+}
 }
 </style>

@@ -12,3 +12,5 @@
 @import "./compositions/flow.css" layer(composition);
 @import "./compositions/repel.css" layer(composition);
 @import "./compositions/sidebar.css" layer(composition);
+
+@import "./utilities/visually-hidden.css" layer(utilities);
