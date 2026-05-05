@@ -28,6 +28,7 @@ export default defineConfig({
 				"education",
 				"employmentType",
 				"page-home",
+				"page-blog",
 				"page-cv",
 				"page-discography",
 				"payoff",

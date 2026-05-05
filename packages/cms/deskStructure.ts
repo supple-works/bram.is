@@ -1,6 +1,7 @@
 import {
 	BsBriefcase,
 	BsEasel,
+	BsFileEarmarkRichtext,
 	BsFilePerson,
 	BsFileRichtext,
 	BsFiletypeDoc,
@@ -30,6 +31,11 @@ export default (S: any) =>
 						title: "HomePage",
 						type: "page-home",
 						icon: BsHouse,
+					}),
+					getTranslatedSingleton(S, {
+						title: "Blog",
+						type: "page-blog",
+						icon: BsFileEarmarkRichtext,
 					}),
 					getTranslatedSingleton(S, {
 						title: "Curriculum Vitae",

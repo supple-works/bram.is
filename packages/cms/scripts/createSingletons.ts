@@ -19,7 +19,7 @@ import { languages } from "../languages";
  * 5. Update your desk structure to use the new documents
  */
 
-const SINGLETONS = [{ id: "page-cv", _type: "page-cv", title: "Curriculum Vitae" }];
+const SINGLETONS = [{ id: "page-blog", _type: "page-blog", title: "Blog" }];
 
 // This will use the client configured in ./sanity.cli.ts
 const client = getCliClient();

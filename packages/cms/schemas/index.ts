@@ -13,18 +13,20 @@ import linkObject from "./objects/link";
 import metaDataObject from "./objects/metaData";
 import pageSelectorObject from "./objects/pageSelector";
 
-import cvPage from "./pages/cv";
-import discographyPage from "./pages/discography";
 // Pages
 import homepagePage from "./pages/homepage";
+import blogPage from "./pages/blog";
+import discographyPage from "./pages/discography";
 import recordPage from "./pages/record";
+import cvPage from "./pages/cv";
 
 export const schemaTypes = [
 	// Pages
 	homepagePage,
-	cvPage,
+	blogPage,
 	discographyPage,
 	recordPage,
+	cvPage,
 	// Documents
 	settingsDocument,
 	personalDocument,
