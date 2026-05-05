@@ -3,6 +3,7 @@ import Layout from "@layouts/Layout.astro";
 import { getStaticPathsFromData } from "src/utilities/api/helpers/getStaticPathsFromData";
 import { getDataHome, type PageHomeProps } from "../../utilities/api/pagehome";
 import type { Locale } from "src/utilities/locale";
+import { Logo } from "@components/molecules/Logo";
 
 // const pageData = await getDataHome();
 export async function getStaticPaths() {
@@ -17,16 +18,21 @@ interface Props {
 
 const { locale, pagesData } = Astro.props;
 const pageData: PageHomeProps = pagesData.filter((page) => page.localeID === locale.id)[0];
+const { payoffs } = pageData;
 ---
 
 <Layout metaData={pageData.metaData} skipMetaTitleSuffix alternativeTranslations={pageData.alternativeTranslations}>
-	<div class="hero" style={{ '--length': pageData.payoffs?.length ?? 1 }}>
+	<Logo payoffs={payoffs} />
+
+
+
+	<div class="hero" style={{ '--length': payoffs?.length ?? 1 }}>
 		<div class="hero__inner | retain | region">
 			<h1 class="hero__title">
 				<span class="hero__start">bram<span class="text-highlight" aria-hidden="true">.</span><span class="visually-hidden">{' '}</span>is<span class="text-highlight" aria-hidden="true">/</span></span>
 				<span class="hero__payoffs">
 					<span class="hero__payoffs-scroller">
-						{pageData.payoffs ? pageData.payoffs.map((payoff, index) => <span class="hero__payoff" data-index={index + 1}>{payoff.name}{index !== pageData.payoffs.length - 1 && index !== pageData.payoffs.length - 2 ? (<span class="visually-hidden">, </span>) : null}{index === pageData.payoffs.length - 2 ? <span class="visually-hidden">& </span> : null}</span>) : null}
+						{payoffs ? payoffs.map((payoff, index) => <span class="hero__payoff" data-index={index + 1}>{payoff.slug}{index !== payoffs.length - 1 && index !== payoffs.length - 2 ? (<span class="visually-hidden">, </span>) : null}{index === payoffs.length - 2 ? <span class="visually-hidden">& </span> : null}</span>) : null}
 					</span>
 				</span>
 			</h1>

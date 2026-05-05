@@ -1,0 +1,35 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<"div"> {
+	payoffs?: {
+		slug: string;
+	}[];
+}
+const { class: className, payoffs } = Astro.props;
+---
+
+<div class={`logo${className ? ` | ${className}` : ""}`}>
+	<div class="logo__start">
+		<span class="hero__start">bram<span class="text-highlight" aria-hidden="true">.</span><span class="visually-hidden">{' '}</span>is<span class="text-highlight" aria-hidden="true">/</span></span>
+	</div>
+	<div class="logo__payoffs">
+		{payoffs ? payoffs.map((payoff, index) => <span class="hero__payoff" data-index={index + 1}>{payoff.slug}{index !== payoffs.length - 1 && index !== payoffs.length - 2 ? (<span class="visually-hidden">, </span>) : null}{index === payoffs.length - 2 ? <span class="visually-hidden">& </span> : null}</span>) : null}
+	</div>
+</div>
+
+<style>
+@layer block {
+	.logo {
+		display: flex;
+		flex-wrap: wrap;
+		font-family: var(--heading-family, "system-ui");
+		font-weight: var(--heading-weight, bold);
+		letter-spacing: var(--heading-tracking, 0);
+		line-height: var(--heading-leading, 1.5);
+		font-size: var(--text-huge);
+		line-height: 1.2;
+		text-transform: lowercase;
+	}
+}
+</style>

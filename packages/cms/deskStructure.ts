@@ -36,7 +36,7 @@ export default (S: any) =>
 						type: "page-cv",
 						icon: BsListStars,
 					}),
-					getSingleton(S, {
+					getTranslatedSingleton(S, {
 						title: "Discography",
 						type: "page-discography",
 						icon: BsVinyl,

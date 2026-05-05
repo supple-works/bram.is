@@ -5,12 +5,10 @@ import { getSanityData } from "./sanity";
 
 export interface PageHomeProps extends PageProps {
 	title: string;
-	payoffs: PayoffProps[];
 }
 
 export const projectionHome = `{
 	title,
-	payoffs[]->${payoffQuery({ name: "" })},
 }`;
 
 export async function getDataHome(): Promise<PageHomeProps[]> {
