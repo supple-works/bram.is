@@ -18,19 +18,22 @@ interface Props {
 const { pageData } = Astro.props;
 
 const locale = getLocaleFromURL(Astro.url.pathname);
-console.log(pageData.posts);
 ---
 
 <Layout metaData={pageData.metaData} type={pageData.type} alternativeTranslations={pageData.alternativeTranslations}>
-	<h1>{pageData.title}</h1>
+	<section class="region">
+		<div class="retain | flow">
+			<h1>{pageData.title}</h1>
 
-	<ol>
-		{pageData.posts?.map((post) => (
-			<li>
-				<article>
-					<h2><a href={parseLink(getFullPageUrl(post), locale)}>{post.title}</a></h2>
-				</article>
-			</li>
-		))}
-	</ol>
+			<ol role="list">
+				{pageData.posts?.map((post) => (
+					<li>
+						<article>
+							<h2><a href={parseLink(getFullPageUrl(post), locale)}>{post.title}</a></h2>
+						</article>
+					</li>
+				))}
+			</ol>
+		</div>
+	</section>
 </Layout>
