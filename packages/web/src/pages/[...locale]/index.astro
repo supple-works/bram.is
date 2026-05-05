@@ -5,7 +5,6 @@ import { getDataHome, type PageHomeProps } from "../../utilities/api/pagehome";
 import type { Locale } from "src/utilities/locale";
 import { Logo } from "@components/molecules/Logo";
 
-// const pageData = await getDataHome();
 export async function getStaticPaths() {
 	const data = await getDataHome();
 	return getStaticPathsFromData({ data, includePagesData: true });
@@ -22,19 +21,13 @@ const { payoffs } = pageData;
 ---
 
 <Layout metaData={pageData.metaData} skipMetaTitleSuffix alternativeTranslations={pageData.alternativeTranslations}>
-	<Logo payoffs={payoffs} />
 
 
 
 	<div class="hero" style={{ '--length': payoffs?.length ?? 1 }}>
 		<div class="hero__inner | retain | region">
-			<h1 class="hero__title">
-				<span class="hero__start">bram<span class="text-highlight" aria-hidden="true">.</span><span class="visually-hidden">{' '}</span>is<span class="text-highlight" aria-hidden="true">/</span></span>
-				<span class="hero__payoffs">
-					<span class="hero__payoffs-scroller">
-						{payoffs ? payoffs.map((payoff, index) => <span class="hero__payoff" data-index={index + 1}>{payoff.slug}{index !== payoffs.length - 1 && index !== payoffs.length - 2 ? (<span class="visually-hidden">, </span>) : null}{index === payoffs.length - 2 ? <span class="visually-hidden">& </span> : null}</span>) : null}
-					</span>
-				</span>
+			<h1>
+				<Logo payoffs={payoffs} />
 			</h1>
 		</div>
 	</div>
@@ -55,24 +48,6 @@ const { payoffs } = pageData;
 		min-block-size: calc(var(--hero-inner-min-block-size) - var(--masthead-block-size, 0px));
 	}
 
-	.hero__title {
-		display: flex;
-		flex-wrap: wrap;
-		font-size: var(--text-huge);
-		line-height: 1.2;
-		text-transform: lowercase;
-	}
-
-	.hero__start {
-		white-space: nowrap;
-	}
-
-	.hero__payoffs,
-	.hero__payoffs-scroller,
-	.hero__payoff {
-		display: block;
-	}
-
 	@supports (animation-timeline: scroll()) {
 		@media (prefers-reduced-motion: no-preference) {
 			.hero {
@@ -82,68 +57,6 @@ const { payoffs } = pageData;
 
 			.hero__inner {
 				position: sticky;
-			}
-
-			.hero__title {
-				--_hero-title-payoffs-correction: 0.20em;
-				--_hero-title-payoffs-skew: 20deg;
-			}
-
-			.hero__payoffs {
-				block-size: 1lh;
-				overflow: hidden;
-				transform: skew(calc(var(--_hero-title-payoffs-skew) * -1));
-				margin-inline-start: calc(var(--_hero-title-payoffs-correction) * -1);
-				padding-inline: var(--_hero-title-payoffs-correction);
-			}
-
-			.hero__payoffs-scroller {
-				display: grid;
-				grid-template-columns: 1fr;
-				grid-template-rows: 1fr;
-				position: relative;
-				transform: skew(var(--_hero-title-payoffs-skew));
-			}
-
-			.hero__payoff {
-				position: relative;
-				animation-fill-mode: both;
-				animation-timing-function: linear;
-				animation-timeline: --hero;
-				animation-name: animate-in-and-out;
-				transform: translateX(calc(-100% - 0.4em));
-				animation-range: cover 10% exit -800%;
-				grid-area: 1 / 1;
-
-				&[data-index="2"] {
-					animation-range: cover 20% exit -600%;
-				}
-
-				&[data-index="3"] {
-					animation-range: cover 40% exit -400%;
-				}
-
-				&[data-index="4"] {
-					animation-range: cover 60% exit -200%;
-				}
-
-				&[data-index="5"] {
-					animation-range: cover 80% exit 0%;
-				}
-			}
-
-			@keyframes animate-in-and-out {
-				from  {
-					transform: translateX(calc(-100% - 0.4em));
-				}
-
-				20%, 80% {
-					transform: translateY(0);
-				}
-
-				to {
-					transform: translateX(calc(-100% - 0.4em));
-				}
 			}
 		}
 	}

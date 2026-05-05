@@ -10,26 +10,104 @@ const { class: className, payoffs } = Astro.props;
 ---
 
 <div class={`logo${className ? ` | ${className}` : ""}`}>
-	<div class="logo__start">
-		<span class="hero__start">bram<span class="text-highlight" aria-hidden="true">.</span><span class="visually-hidden">{' '}</span>is<span class="text-highlight" aria-hidden="true">/</span></span>
-	</div>
+	<div class="logo__start">bram<span class="text-highlight" aria-hidden="true">.</span><span class="visually-hidden">{' '}</span>is<span class="text-highlight" aria-hidden="true">/</span></div>
 	<div class="logo__payoffs">
-		{payoffs ? payoffs.map((payoff, index) => <span class="hero__payoff" data-index={index + 1}>{payoff.slug}{index !== payoffs.length - 1 && index !== payoffs.length - 2 ? (<span class="visually-hidden">, </span>) : null}{index === payoffs.length - 2 ? <span class="visually-hidden">& </span> : null}</span>) : null}
+		<div class="logo__payoffs-scroller">
+			{payoffs ? payoffs.map((payoff, index) => <span class="logo__payoff" data-index={index + 1}>{payoff.slug.replaceAll('-', ' ')}{index !== payoffs.length - 1 && index !== payoffs.length - 2 ? (<span class="visually-hidden">, </span>) : null}{index === payoffs.length - 2 ? <span class="visually-hidden">& </span> : null}</span>) : null}
+		</div>
 	</div>
 </div>
 
 <style>
-@layer block {
-	.logo {
-		display: flex;
-		flex-wrap: wrap;
-		font-family: var(--heading-family, "system-ui");
-		font-weight: var(--heading-weight, bold);
-		letter-spacing: var(--heading-tracking, 0);
-		line-height: var(--heading-leading, 1.5);
-		font-size: var(--text-huge);
-		line-height: 1.2;
-		text-transform: lowercase;
+	@layer block {
+		.logo {
+			display: flex;
+			flex-wrap: wrap;
+			font-family: var(--heading-family, "system-ui");
+			font-weight: var(--heading-weight, bold);
+			letter-spacing: var(--heading-tracking, 0);
+			line-height: var(--heading-leading, 1.5);
+			font-size: var(--text-huge);
+			line-height: 1.2;
+			text-transform: lowercase;
+		}
+
+		.logo__start {
+			white-space: nowrap;
+		}
+
+		.logo__payoffs,
+		.logo__payoffs-scroller,
+		.logo__payoff {
+			display: block;
+		}
+
+		@supports (animation-timeline: scroll()) {
+			@media (prefers-reduced-motion: no-preference) {
+
+
+				.logo {
+					--_logo-payoffs-correction: 0.20em;
+					--_logo-payoffs-skew: 20deg;
+				}
+
+				.logo__payoffs {
+					block-size: 1lh;
+					overflow: hidden;
+					transform: skew(calc(var(--_logo-payoffs-skew) * -1));
+					margin-inline-start: calc(var(--_logo-payoffs-correction) * -1);
+					padding-inline: var(--_logo-payoffs-correction);
+				}
+
+				.logo__payoffs-scroller {
+					display: grid;
+					grid-template-columns: 1fr;
+					grid-template-rows: 1fr;
+					position: relative;
+					transform: skew(var(--_logo-payoffs-skew));
+				}
+
+				.logo__payoff {
+					position: relative;
+					animation-fill-mode: both;
+					animation-timing-function: linear;
+					animation-timeline: --hero;
+					animation-name: animate-in-and-out;
+					transform: translateX(calc(-100% - 0.4em));
+					animation-range: cover 10% exit -800%;
+					grid-area: 1 / 1;
+
+					&[data-index="2"] {
+						animation-range: cover 20% exit -600%;
+					}
+
+					&[data-index="3"] {
+						animation-range: cover 40% exit -400%;
+					}
+
+					&[data-index="4"] {
+						animation-range: cover 60% exit -200%;
+					}
+
+					&[data-index="5"] {
+						animation-range: cover 80% exit 0%;
+					}
+				}
+
+				@keyframes animate-in-and-out {
+					from  {
+						transform: translateX(calc(-100% - 0.4em));
+					}
+
+					20%, 80% {
+						transform: translateY(0);
+					}
+
+					to {
+						transform: translateX(calc(-100% - 0.4em));
+					}
+				}
+			}
+		}
 	}
-}
 </style>
