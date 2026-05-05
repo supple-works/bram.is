@@ -1,0 +1,29 @@
+---
+import { ContentBlock } from "@components/elements";
+import Layout from "../../../layouts/Layout.astro";
+import { getStaticPathsFromData } from "src/utilities/api/helpers/getStaticPathsFromData";
+import { getDataPagePost, type PagePostProps } from "src/utilities/api/pagePost";
+import { getLocaleFromURL } from "src/utilities/locale";
+import { formatDateToISO, formatLongDate } from "src/utilities/date";
+
+export async function getStaticPaths() {
+	const data = await getDataPagePost();
+	return getStaticPathsFromData({ data, fragment: "post" });
+}
+
+interface Props {
+	pageData: PagePostProps;
+}
+
+const { pageData } = Astro.props;
+
+const locale = getLocaleFromURL(Astro.url.pathname);
+---
+
+<Layout metaData={pageData.metaData} type={pageData.type} alternativeTranslations={pageData.alternativeTranslations}>
+	<article>
+		<h1>{pageData.title}</h1>
+		<time datetime={formatDateToISO(new Date(pageData.publishDate))} itemprop="datePublished">{formatLongDate(new Date(pageData.publishDate), locale.locale)}</time>
+		<ContentBlock value={pageData.content} />
+	</article>
+</Layout>

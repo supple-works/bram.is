@@ -42,6 +42,11 @@ export default (S: any) =>
 						type: "page-blog",
 						icon: BsFileEarmarkRichtext,
 					}),
+					getTranslatedDocumentList(S, {
+						title: "Post",
+						type: "page-post",
+						icon: BsFileEarmarkRichtext,
+					}),
 					getTranslatedSingleton(S, {
 						title: "Curriculum Vitae",
 						type: "page-cv",

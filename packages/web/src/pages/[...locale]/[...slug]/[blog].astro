@@ -1,7 +1,10 @@
 ---
+import { getFullPageUrl } from "src/utilities/api/helpers/getParentPages";
 import Layout from "../../../layouts/Layout.astro";
 import { getStaticPathsFromData } from "src/utilities/api/helpers/getStaticPathsFromData";
 import { getDataPageBlog, type PageBlogProps } from "src/utilities/api/pageBlog";
+import { parseLink } from "src/utilities/link";
+import { getLocaleFromURL } from "src/utilities/locale";
 
 export async function getStaticPaths() {
 	const data = await getDataPageBlog();
@@ -13,8 +16,21 @@ interface Props {
 }
 
 const { pageData } = Astro.props;
+
+const locale = getLocaleFromURL(Astro.url.pathname);
+console.log(pageData.posts);
 ---
 
 <Layout metaData={pageData.metaData} type={pageData.type} alternativeTranslations={pageData.alternativeTranslations}>
 	<h1>{pageData.title}</h1>
+
+	<ol>
+		{pageData.posts?.map((post) => (
+			<li>
+				<article>
+					<h2><a href={parseLink(getFullPageUrl(post), locale)}>{post.title}</a></h2>
+				</article>
+			</li>
+		))}
+	</ol>
 </Layout>

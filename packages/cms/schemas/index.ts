@@ -16,6 +16,7 @@ import pageSelectorObject from "./objects/pageSelector";
 import homepagePage from "./pages/homepage";
 import pagePage from "./pages/page";
 import blogPage from "./pages/blog";
+import postPage from "./pages/post";
 import discographyPage from "./pages/discography";
 import recordPage from "./pages/record";
 import cvPage from "./pages/cv";
@@ -25,6 +26,7 @@ export const schemaTypes = [
 	homepagePage,
 	pagePage,
 	blogPage,
+	postPage,
 	discographyPage,
 	recordPage,
 	cvPage,

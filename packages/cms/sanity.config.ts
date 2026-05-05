@@ -30,6 +30,7 @@ export default defineConfig({
 				"page-home",
 				"page-page",
 				"page-blog",
+				"page-post",
 				"page-cv",
 				"page-discography",
 			],
