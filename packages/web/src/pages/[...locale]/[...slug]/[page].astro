@@ -1,0 +1,20 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { getStaticPathsFromData } from "src/utilities/api/helpers/getStaticPathsFromData";
+import { getDataPagePage, type PagePageProps } from "src/utilities/api/pagePage";
+
+export async function getStaticPaths() {
+	const data = await getDataPagePage();
+	return getStaticPathsFromData({ data, fragment: "page" });
+}
+
+interface Props {
+	pageData: PagePageProps;
+}
+
+const { pageData } = Astro.props;
+---
+
+<Layout metaData={pageData.metaData} type={pageData.type} alternativeTranslations={pageData.alternativeTranslations}>
+	<h1>{pageData.title}</h1>
+</Layout>

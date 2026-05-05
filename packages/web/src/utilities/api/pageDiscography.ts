@@ -1,5 +1,6 @@
 import type { PageRecordProps } from "./pageRecord";
 import type { PageProps } from "./queries";
+import { getAdditionalPageData } from "./helpers/getAdditionalPageData";
 import { projectionPageRecord } from "./pageRecord";
 import { pageQuery, parentPageQuery } from "./queries";
 import { getSanityData } from "./sanity";
@@ -26,5 +27,7 @@ export async function getDataPageDiscography(): Promise<
 		projection: projectionPageDiscography,
 		multiple: true,
 	});
-	return await getSanityData({ query });
+	const data = await getSanityData({ query });
+
+	return getAdditionalPageData(data);
 }

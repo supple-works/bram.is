@@ -22,9 +22,6 @@ export default defineConfig({
 		}),
 	],
 	vite: {
-		server: {
-			allowedHosts: ["brams-mac-mini.ratfish-polaris.ts.net"],
-		},
 		plugins: [
 			sugarcube({
 				unoOptions: {
