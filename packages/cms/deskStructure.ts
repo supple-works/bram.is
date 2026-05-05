@@ -60,11 +60,6 @@ export default (S: any) =>
 				icon: BsFiletypeDoc,
 				items: [
 					getTranslatedDocumentList(S, {
-						title: "Payoff",
-						type: "payoff",
-						icon: BsListColumnsReverse,
-					}),
-					getTranslatedDocumentList(S, {
 						title: "Experience",
 						type: "experience",
 						icon: BsListColumnsReverse,

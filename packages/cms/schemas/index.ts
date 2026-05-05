@@ -1,7 +1,6 @@
 import educationDocument from "./documents/education";
 import employmentTypeDocument from "./documents/employmentType";
 import experienceDocument from "./documents/experience";
-import payoffDocument from "./documents/payoff";
 
 import personalDocument from "./documents/personal";
 // Documents
@@ -33,7 +32,6 @@ export const schemaTypes = [
 	employmentTypeDocument,
 	experienceDocument,
 	skillsDocument,
-	payoffDocument,
 	educationDocument,
 	// Objects
 	metaDataObject,

@@ -1,7 +1,7 @@
 import { documentInternationalization } from "@sanity/document-internationalization";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
-import { deskTool } from "sanity/desk";
+import { structureTool } from "sanity/structure";
 import deskStructure from "./deskStructure";
 import { studioDataSet, studioProjectID } from "./environment";
 import { languages } from "./languages";
@@ -15,7 +15,7 @@ export default defineConfig({
 	dataset: studioDataSet,
 
 	plugins: [
-		deskTool({
+		structureTool({
 			structure: deskStructure,
 		}),
 		visionTool(),
@@ -31,9 +31,8 @@ export default defineConfig({
 				"page-blog",
 				"page-cv",
 				"page-discography",
-				"payoff",
 			],
-			weakReferences: true,
+			// weakReferences: true,
 		}),
 	],
 

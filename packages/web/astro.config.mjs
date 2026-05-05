@@ -4,7 +4,7 @@ import sugarcube from "@sugarcube-sh/vite";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
 
-const { PUBLIC_SANITY_STUDIO_PROJECT_ID, PUBLIC_SANITY_STUDIO_DATASET }
+const { SANITY_STUDIO_PROJECT_ID, SANITY_STUDIO_DATASET }
 	= loadEnv(import.meta.env.MODE, process.cwd(), "");
 
 // https://astro.build/config
@@ -15,8 +15,8 @@ export default defineConfig({
 	},
 	integrations: [
 		sanity({
-			projectId: PUBLIC_SANITY_STUDIO_PROJECT_ID,
-			dataset: PUBLIC_SANITY_STUDIO_DATASET,
+			projectId: SANITY_STUDIO_PROJECT_ID,
+			dataset: SANITY_STUDIO_DATASET,
 			// Set useCdn to false if you're building statically.
 			useCdn: false,
 		}),

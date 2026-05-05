@@ -7,5 +7,6 @@ dist/
 node_modules/
 
 # environment variables
+*.local
 .env
 .env.production

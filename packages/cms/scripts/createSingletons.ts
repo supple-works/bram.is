@@ -1,5 +1,6 @@
-import { getCliClient } from "sanity/cli";
-import { languages } from "../languages";
+import {randomKey} from '@sanity/util/content'
+import {getCliClient} from 'sanity/cli'
+import { languages } from '../languages'
 
 /**
  * This script will create one or many "singleton" documents for each language
@@ -19,49 +20,60 @@ import { languages } from "../languages";
  * 5. Update your desk structure to use the new documents
  */
 
-const SINGLETONS = [{ id: "page-blog", _type: "page-blog", title: "Blog" }];
+const SINGLETONS = [
+	{ id: 'page-home', _type: 'page-home', title: 'Home' },
+	{ id: 'page-blog', _type: 'page-blog', title: 'Blog' },
+	{ id: 'page-cv', _type: 'page-cv', title: 'CV' },
+	{ id: 'page-discography', _type: 'page-discography', title: 'Discography' },
+	{ id: 'settings', _type: 'settings', title: 'Settings' },
+]
+const LANGUAGES = languages
 
 // This will use the client configured in ./sanity.cli.ts
-const client = getCliClient();
+const client = getCliClient()
+type CreateOrReplaceDocument = Parameters<
+  ReturnType<typeof client.transaction>['createOrReplace']
+>[0]
 
 async function createSingletons() {
-	const documents = SINGLETONS.map((singleton) => {
-		const translations = languages.map(language => ({
-			_id: `${singleton.id}-${language.id}`,
-			_type: singleton._type,
-			language: language.id,
-		}));
+  const documents: CreateOrReplaceDocument[] = SINGLETONS.flatMap((singleton) => {
+    const translations: CreateOrReplaceDocument[] = LANGUAGES.map((language) => ({
+      _id: `${singleton.id}-${language.id}`,
+      _type: singleton._type,
+      language: language.id,
+    }))
 
-		const metadata = {
-			_id: `${singleton.id}-translation-metadata`,
-			_type: `translation.metadata`,
-			translations: translations.map(translation => ({
-				_key: translation.language,
-				value: {
-					_type: "reference",
-					_ref: translation._id,
-				},
-			})),
-			schemaTypes: [...new Set(translations.map(translation => translation._type))],
-		};
+    const metadata: CreateOrReplaceDocument = {
+      _id: `${singleton.id}-translation-metadata`,
+      _type: `translation.metadata`,
+      translations: translations.map((translation) => ({
+        _key: randomKey(12),
+        _type: 'internationalizedArrayReferenceValue',
+        language: translation['language'],
+        value: {
+          _type: 'reference',
+          _ref: translation._id,
+        },
+      })),
+      schemaTypes: Array.from(new Set(translations.map((translation) => translation._type))),
+    }
 
-		return [metadata, ...translations];
-	}).flat();
+    return [metadata].concat(translations)
+  })
 
-	const transaction = client.transaction();
+  const transaction = client.transaction()
 
-	documents.forEach((doc) => {
-		transaction.createOrReplace(doc);
-	});
+  documents.forEach((doc) => {
+    transaction.createOrReplace(doc)
+  })
 
-	await transaction
-		.commit()
-		.then((res) => {
-			console.log(res);
-		})
-		.catch((err) => {
-			console.error(err);
-		});
+  const result = await transaction.commit()
+
+  // eslint-disable-next-line no-console
+  console.log(result)
 }
 
-createSingletons();
+createSingletons().catch((err) => {
+  console.error(err)
+  process.exit(1)
+})

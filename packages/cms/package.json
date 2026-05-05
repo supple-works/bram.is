@@ -15,17 +15,21 @@
 		"create-singletons": "pnpx ts-node scripts/createSingletons.ts"
 	},
 	"dependencies": {
-		"@sanity/document-internationalization": "^4.1.1",
-		"@sanity/vision": "^5.21.0",
+		"@sanity/document-internationalization": "^6.1.1",
+		"@sanity/language-filter": "^5.0.1",
+		"@sanity/util": "^5.23.0",
+		"@sanity/vision": "^5.23.0",
 		"react": "^19.2.5",
 		"react-dom": "^19.2.5",
 		"react-icons": "^5.6.0",
 		"react-is": "^19.2.5",
-		"sanity": "^5.21.0",
-		"styled-components": "^6.4.0"
+		"sanity": "^5.23.0",
+		"sanity-plugin-internationalized-array": "^5.1.1",
+
+		"styled-components": "^6.4.1"
 	},
 	"devDependencies": {
-		"@sanity/client": "^7.21.0",
+		"@sanity/client": "^7.22.0",
 		"@sanity/eslint-config-studio": "^6.0.0",
 		"@types/react": "^19.2.14",
 		"@types/styled-components": "^5.1.36",

@@ -30,20 +30,5 @@ export default defineType({
 			name: "title",
 			type: "string",
 		}),
-
-		defineField({
-			title: "Payoffs",
-			name: "payoffs",
-			type: "array",
-			of: [
-				{
-					type: "reference",
-					to: [{ type: "payoff" }],
-					options: {
-						filter: filterReference,
-					},
-				},
-			],
-		}),
 	],
 });
