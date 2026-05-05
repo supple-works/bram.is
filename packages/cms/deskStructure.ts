@@ -32,6 +32,11 @@ export default (S: any) =>
 						type: "page-home",
 						icon: BsHouse,
 					}),
+					getTranslatedDocumentList(S, {
+						title: "Page",
+						type: "page-page",
+						icon: BsFileEarmarkRichtext,
+					}),
 					getTranslatedSingleton(S, {
 						title: "Blog",
 						type: "page-blog",
