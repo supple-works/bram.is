@@ -22,9 +22,9 @@ const locale = getLocaleFromURL(Astro.url.pathname);
 
 <Layout metaData={pageData.metaData} type={pageData.type} alternativeTranslations={pageData.alternativeTranslations}>
 	<div class="region">
-		<article class="retain | flow">
-			<h1>{pageData.title}</h1>
-			<time datetime={formatDateToISO(new Date(pageData.publishDate))} itemprop="datePublished">{formatLongDate(new Date(pageData.publishDate), locale.locale)}</time>
+		<article class="retain | flow" data-size="article">
+			<h1 style={{"view-transition-name": `${pageData.slug}-title`}}>{pageData.title}</h1>
+			<time style={{"view-transition-name": `${pageData.slug}-date`}} datetime={formatDateToISO(new Date(pageData.publishDate))} itemprop="datePublished">{formatLongDate(new Date(pageData.publishDate), locale.locale)}</time>
 			<ContentBlock value={pageData.content} />
 		</article>
 	</div>

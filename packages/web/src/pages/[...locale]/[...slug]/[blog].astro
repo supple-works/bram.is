@@ -5,6 +5,7 @@ import { getStaticPathsFromData } from "src/utilities/api/helpers/getStaticPaths
 import { getDataPageBlog, type PageBlogProps } from "src/utilities/api/pageBlog";
 import { parseLink } from "src/utilities/link";
 import { getLocaleFromURL } from "src/utilities/locale";
+import { formatDateToISO, formatLongDate } from "src/utilities/date";
 
 export async function getStaticPaths() {
 	const data = await getDataPageBlog();
@@ -25,11 +26,12 @@ const locale = getLocaleFromURL(Astro.url.pathname);
 		<div class="retain | flow">
 			<h1>{pageData.title}</h1>
 
-			<ol role="list">
+			<ol class="flow"role="list">
 				{pageData.posts?.map((post) => (
 					<li>
 						<article>
-							<h2><a href={parseLink(getFullPageUrl(post), locale)}>{post.title}</a></h2>
+							<h2 style={{"view-transition-name": `${post.slug}-title`}}><a href={parseLink(getFullPageUrl(post), locale)}>{post.title}</a></h2>
+							<time style={{"view-transition-name": `${post.slug}-date`}} datetime={formatDateToISO(new Date(post.publishDate))} itemprop="datePublished">{formatLongDate(new Date(post.publishDate), locale.locale)}</time>
 						</article>
 					</li>
 				))}
