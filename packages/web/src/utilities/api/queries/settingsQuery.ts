@@ -34,6 +34,7 @@ export interface SettingsProps {
 		phone: string;
 		links: LinkProps[];
 	};
+	payoffs?: { slug: string }[];
 }
 
 export type SettingsByLocale = {
@@ -70,6 +71,9 @@ export function settingsQuery({ locale }: { locale: Locale }): string {
 				${linkQuery({ multiple: true })},
 			},
 			country,
+		},
+		"payoffs": *[_type match "page-*" && !defined(parentPage) && defined(slug) && slug.current != "" && language == "${locale.id}"] {
+			"slug": slug.current,
 		},
 	}`;
 }

@@ -18,7 +18,6 @@ export interface PageProps extends MetaDataProps, ParentPageProps {
 	updatedAt: string;
 	id: string;
 	alternativeTranslations: AlternativeTranslationProps[];
-	payoffs?: { slug: string }[];
 	localeID?: string;
 	slug?: string;
 }
@@ -46,9 +45,6 @@ export function pageQuery({
 			"slug": slug.current,
 			"localeID": language,
 			${parentPageQuery()},
-		},
-		"payoffs": *[_type match "page-*" && !defined(parentPage) && defined(slug) && slug.current != "" && language == ^.language] {
-			"slug": slug.current,
 		},
 	}`;
 }
