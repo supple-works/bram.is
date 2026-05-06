@@ -1,19 +1,38 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import { cva, type VariantProps } from "class-variance-authority";
+import { useSettings } from 'src/utilities/api/queries';
+import { getLocaleFromURL } from 'src/utilities/locale';
 
-interface Props extends HTMLAttributes<"div"> {
-	payoffs?: {
-		slug: string;
-	}[];
+const logoVariants = cva("logo", {
+	variants: {
+		size: {
+			big: "logo--big",
+			default: "",
+		}
+	},
+	defaultVariants: {
+		size: "default",
+	}
+});
+
+interface Props extends HTMLAttributes<"div">, VariantProps<typeof logoVariants> {
 }
-const { class: className, payoffs } = Astro.props;
+const { class: className, size } = Astro.props;
+
+const locale = getLocaleFromURL(Astro.url.pathname);
+const settings = await useSettings({ locale });
+const payoffs = settings.payoffs;
 ---
 
-<div class={`logo${className ? ` | ${className}` : ""}`}>
-	<div class="logo__start">bram<span class="text-highlight" aria-hidden="true">.</span><span class="visually-hidden">{' '}</span>is<span class="text-highlight" aria-hidden="true">/</span></div>
+<div class={logoVariants({ size, className })}>
+	<div class="logo__start"><a class="logo__link-main" href="/">bram<span class="text-highlight" aria-hidden="true">.</span><span class="visually-hidden">{' '}</span>is</a><span class="text-highlight" aria-hidden="true">/</span></div>
 	<div class="logo__payoffs">
 		<div class="logo__payoffs-scroller">
-			{payoffs ? payoffs.map((payoff, index) => <span class="logo__payoff" data-index={index + 1}>{payoff.slug.replaceAll('-', ' ')}{index !== payoffs.length - 1 && index !== payoffs.length - 2 ? (<span class="visually-hidden">, </span>) : null}{index === payoffs.length - 2 ? <span class="visually-hidden">& </span> : null}</span>) : null}
+			{payoffs ? payoffs.map((payoff, index) => {
+			  const isActivePayoff = Astro.url.pathname.includes(payoff.slug);
+				return <span class="logo__payoff" aria-current={isActivePayoff ? "page" : undefined} data-index={index + 1}><a class="logo__link-payoff" href={`/${payoff.slug}`}>{payoff.slug.replaceAll('-', ' ')}</a>{index !== payoffs.length - 1 && index !== payoffs.length - 2 ? (<span class="visually-hidden">, </span>) : null}{index === payoffs.length - 2 ? <span class="visually-hidden">& </span> : null}</a></span>;
+			}) : null}
 		</div>
 	</div>
 </div>
@@ -27,9 +46,10 @@ const { class: className, payoffs } = Astro.props;
 			font-weight: var(--heading-weight, bold);
 			letter-spacing: var(--heading-tracking, 0);
 			line-height: var(--heading-leading, 1.5);
-			font-size: var(--text-huge);
+			font-size: var(--text-heading-3);
 			line-height: 1.2;
 			text-transform: lowercase;
+			view-transition-name: bramis-logo;
 		}
 
 		.logo__start {
@@ -40,6 +60,20 @@ const { class: className, payoffs } = Astro.props;
 		.logo__payoffs-scroller,
 		.logo__payoff {
 			display: block;
+		}
+
+		.logo__link-main,
+		.logo__link-payoff {
+			text-decoration: none;
+			color: inherit;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		.logo--big {
+			font-size: var(--text-huge);
 		}
 
 		@supports (animation-timeline: scroll()) {
@@ -92,7 +126,14 @@ const { class: className, payoffs } = Astro.props;
 					&[data-index="5"] {
 						animation-range: cover 80% exit 0%;
 					}
+
+					&[aria-current="page"] {
+						animation: none;
+						transform: translateY(0);
+					}
 				}
+
+
 
 				@keyframes animate-in-and-out {
 					from  {

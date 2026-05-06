@@ -4,17 +4,21 @@ import { MetaData, type MetaDataProps } from "@components/elements";
 
 import "virtual:sugarcube.css";
 import "../styles/global.css";
-import type { PageProps } from "src/utilities/api/queries";
+import { useSettings, type PageProps } from "src/utilities/api/queries";
 import { getLocaleFromURL } from "src/utilities/locale";
+import { Logo } from "@components/molecules/Logo";
 
 const locale = getLocaleFromURL(Astro.url.pathname);
 
 export interface Props extends HTMLAttributes<"html">, MetaDataProps {
 	type?: string;
 	alternativeTranslations?: PageProps["alternativeTranslations"];
+	withOutMasthead?: boolean;
 }
 
-const { type, alternativeTranslations, metaData, skipMetaTitleSuffix } = Astro.props;
+const settings = await useSettings({ locale });
+
+const { type, alternativeTranslations, metaData, skipMetaTitleSuffix, withOutMasthead, payoffs } = Astro.props;
 ---
 
 <!doctype html>
@@ -29,12 +33,25 @@ const { type, alternativeTranslations, metaData, skipMetaTitleSuffix } = Astro.p
 		<link rel="preload" href="/fonts/alcyone/Alcyone-Medium.woff2" as="font" type="font/woff2" crossorigin>
 	</head>
 	<body>
-		<!-- <header>
-			<a href="/">bram.is</a>
-		</header> -->
+		{withOutMasthead ? null : (<header class="masthead">
+			<div class="masthead__inner | retain"><Logo /></div>
+		</header>)}
 		<main id="content">
 			<slot />
 		</main>
 		<!-- <footer>Footer</footer> -->
 	</body>
 </html>
+
+<style>
+	@layer block {
+		.masthead {
+			padding-block: var(--core-space-m);
+
+		}
+
+		.masthead__inner {
+			display: flex;
+		}
+	}
+</style>

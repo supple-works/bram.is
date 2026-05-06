@@ -4,6 +4,7 @@ import { getStaticPathsFromData } from "src/utilities/api/helpers/getStaticPaths
 import { getDataHome, type PageHomeProps } from "../../utilities/api/pagehome";
 import type { Locale } from "src/utilities/locale";
 import { Logo } from "@components/molecules/Logo";
+import { useSettings } from "src/utilities/api/queries";
 
 export async function getStaticPaths() {
 	const data = await getDataHome();
@@ -17,17 +18,15 @@ interface Props {
 
 const { locale, pagesData } = Astro.props;
 const pageData: PageHomeProps = pagesData.filter((page) => page.localeID === locale.id)[0];
-const { payoffs } = pageData;
+const settings = await useSettings({ locale });
+const payoffs = settings.payoffs;
 ---
 
-<Layout metaData={pageData.metaData} skipMetaTitleSuffix alternativeTranslations={pageData.alternativeTranslations}>
-
-
-
+<Layout metaData={pageData.metaData} skipMetaTitleSuffix alternativeTranslations={pageData.alternativeTranslations} withOutMasthead payoffs={payoffs}>
 	<div class="hero" style={{ '--length': payoffs?.length ?? 1 }}>
 		<div class="hero__inner | retain | region">
 			<h1>
-				<Logo payoffs={payoffs} />
+				<Logo size="big" />
 			</h1>
 		</div>
 	</div>

@@ -92,11 +92,11 @@
 					}
 				},
 				"6": {
-					"$value": { "value": 3.8147, "unit": "rem" },
+					"$value": { "value": 1.9531, "unit": "rem" },
 					"$extensions": {
 						"sh.sugarcube": {
 							"fluid": {
-								"min": { "value": 3.8147, "unit": "rem" },
+								"min": { "value": 1.9531, "unit": "rem" },
 								"max": { "value": 4.7684, "unit": "rem" }
 							}
 						}
