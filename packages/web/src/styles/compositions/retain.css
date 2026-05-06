@@ -37,8 +37,12 @@ A common wrapper/container
 	--retain-max-inline-size: 120rem; /* 1920 */
 }
 
+:where(.retain[data-size="article"]) {
+	--retain-max-inline-size: var(--measure-base);
+}
+
 :where(.retain[data-size="text"]) {
-	--retain-max-inline-size: var(--measure-base); /* Ideal line length */
+	--retain-max-inline-size: var(--measure-base);
 	--retain-padding-inline: 0px;
 	--retain-margin-inline-start: 0px;
 }

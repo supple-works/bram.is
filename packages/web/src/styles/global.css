@@ -1,4 +1,4 @@
-/*@import './tokens/tokens.css' layer(theme);*/
+@import "./tokens/tokens.css" layer(theme);
 
 @import "./global/reset.css" layer(global);
 @import "./global/fonts.css" layer(global);
