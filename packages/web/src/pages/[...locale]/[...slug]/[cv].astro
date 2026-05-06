@@ -90,41 +90,56 @@ const now = new Date();
 				) : null
 			}
 			<div slot="aside">
-				<Heading level={2} styledAs={4} variant="emphasised">
-					{pageData.skills.title}
-				</Heading>
-				<div>
+				{pageData.skills ?
+					<Heading level={2} styledAs={4} variant="emphasised">
+						{pageData.skills.title}
+					</Heading>
 					<div>
-						<ContentBlock value={pageData.skills.content} />
+						<div>
+							<ContentBlock value={pageData.skills.content} />
+						</div>
 					</div>
-				</div>
+				: null}
 
 				{
-					!avg ? (
-						<>
-							<Heading level={2} styledAs={4} variant="emphasised">
-								{pageData.personal.title}
+					avg ? null : pageData.personal ? (<>
+						<Heading level={2} styledAs={4} variant="emphasised">
+							{pageData.personal.title}
+						</Heading>
+						<dl>
+							<dt>{settings.labels.name}</dt>
+							<dd>
+								<span itemprop="givenName">{settings.personal.givenName}</span>
+								<span itemprop="familyName">{settings.personal.familyName}</span>
+							</dd>
+							<dt>{settings.labels.dateOfBirth}</dt>
+							<dd itemprop="birthDate">{formatLongDate(new Date(settings.personal.birthDate), locale.locale)}</dd>
+							<dt>{settings.labels.email}</dt>
+							<dd>{settings.personal.email}</dd>
+							<dt>{settings.labels.phone}</dt>
+							<dd>{settings.personal.phone}</dd>
+							<dt>{settings.labels.location}</dt>
+							<dd itemprop="homeLocation">
+								{settings.personal.city}, <span itemprop="nationality">{settings.personal.country}</span>
+							</dd>
+						</dl>
+					</>
+				) : null}
+			</div>
+		</LayerSidebar>
+
+		<!-- <LayerSidebar reversed>
+			{
+				pageData.education?.items?.length ? (
+					<section id={stringToSlug(pageData.education.title || 'education')}>
+						{pageData.education?.title ? (
+							<Heading level={2} styledAs={4}>
+								{pageData.education.title}
 							</Heading>
-							<dl>
-								<dt>{settings.labels.name}</dt>
-								<dd>
-									<span itemprop="givenName">{settings.personal.givenName}</span>
-									<span itemprop="familyName">{settings.personal.familyName}</span>
-								</dd>
-								<dt>{settings.labels.dateOfBirth}</dt>
-								<dd itemprop="birthDate">{formatLongDate(new Date(settings.personal.birthDate), locale.locale)}</dd>
-								<dt>{settings.labels.email}</dt>
-								<dd>{settings.personal.email}</dd>
-								<dt>{settings.labels.phone}</dt>
-								<dd>{settings.personal.phone}</dd>
-								<dt>{settings.labels.location}</dt>
-								<dd itemprop="homeLocation">
-									{settings.personal.city}, <span itemprop="nationality">{settings.personal.country}</span>
-								</dd>
-							</dl>
-						</>
-					) : null
-				}
+						) : null}
+						<ul>
+							{pageData.education.items.map((education) => (
+								<li>
 			</div>
 		</LayerSidebar>
 
