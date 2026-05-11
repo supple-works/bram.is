@@ -17,12 +17,16 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "24"
+          cache: pnpm
+
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Build the website
-        run: npm run web:build
+        run: pnpm run web:build
 
       - name: Install s3cmd
         run: sudo apt-get install -y s3cmd
