@@ -44,7 +44,7 @@ jobs:
 
       - run: |
           scw object config get type=s3cmd > /home/runner/.s3cfg
-          s3cmd --no-mime-magic --guess-mime-type sync ./packages/web/dist/* s3://bram-is.s3.nl-ams.scw.cloud/
+          s3cmd --no-mime-magic --guess-mime-type sync ./packages/web/dist/* s3://bram-is-web.s3.nl-ams.scw.cloud/
         env:
           SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
           SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
