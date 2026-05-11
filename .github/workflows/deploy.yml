@@ -40,7 +40,7 @@ jobs:
       - name: Install the Scaleway CLI
         uses: scaleway/action-scw@v0
         with:
-          version: v2.37.0
+          version: v2.55.0
 
       - run: |
           scw object config get type=s3cmd > /home/runner/.s3cfg
