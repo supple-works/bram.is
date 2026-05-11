@@ -1,0 +1,42 @@
+name: Upload to Scaleway Object Storage
+
+on:
+  push:
+    branches:
+      - main # Change this to your default branch if different (e.g. "trunk", or "master")
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "24"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the website
+        run: npm run web:build
+
+      - name: Install s3cmd
+        run: sudo apt-get install -y s3cmd
+
+      - name: Install the Scaleway CLI
+        uses: scaleway/action-scw@v0
+        with:
+          version: v2.37.0
+
+      - run: |
+          scw object config get type=s3cmd > /home/runner/.s3cfg
+          s3cmd --no-mime-magic --guess-mime-type sync ./packages/web/dist/* s3://bram.is/
+        env:
+          SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
+          SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
+          SCW_DEFAULT_PROJECT_ID: ${{ secrets.SCW_DEFAULT_PROJECT_ID }}
+          SCW_DEFAULT_ORGANIZATION_ID: ${{ secrets.SCW_DEFAULT_ORGANIZATION_ID }}
