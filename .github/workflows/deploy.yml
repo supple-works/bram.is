@@ -45,6 +45,9 @@ jobs:
       - run: |
           scw object config get region=nl-ams type=s3cmd > /home/runner/.s3cfg
           s3cmd --no-mime-magic --guess-mime-type sync ./packages/web/dist/* s3://bram-is-web
+          s3cmd ls --recursive s3://bram-is-web | awk '$4 ~ /\.css$/ {print $4}' | while read -r file; do
+            s3cmd modify --add-header="Cache-Control:max-age=31536000, immutable" "$file"
+            done
         env:
           SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
           SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
