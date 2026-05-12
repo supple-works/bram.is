@@ -45,9 +45,6 @@ jobs:
       - run: |
           scw object config get region=nl-ams type=s3cmd > /home/runner/.s3cfg
           s3cmd --no-mime-magic --guess-mime-type sync ./packages/web/dist/* s3://bram-is-web
-          # Set Cache-Control for CSS and font files (1 year, immutable)
-          s3cmd --recursive modify --add-header="Cache-Control:max-age=31536000, immutable" s3://bram-is-web/*.css
-          s3cmd --recursive modify --add-header="Cache-Control:max-age=31536000, immutable" s3://bram-is-web/*.woff2
         env:
           SCW_ACCESS_KEY: ${{ secrets.SCW_ACCESS_KEY }}
           SCW_SECRET_KEY: ${{ secrets.SCW_SECRET_KEY }}
