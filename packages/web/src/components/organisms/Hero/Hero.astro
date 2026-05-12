@@ -13,7 +13,7 @@ interface Props extends HTMLAttributes<"div"> {
 const { chapeau, title, image, class: className, ...attrs } = Astro.props;
 ---
 
-<header class={`c-hero${image ? " c-hero--image" : ""}${className ? ` | ${className}` : ""}`} {...attrs}>
+<header class={`hero${image ? " hero--image" : ""}${className ? ` | ${className}` : ""}`} {...attrs}>
 	{
 		image && image.src ? (
 			<div>
@@ -34,3 +34,11 @@ const { chapeau, title, image, class: className, ...attrs } = Astro.props;
 		</div>
 	</div>
 </header>
+
+<style>
+@layer block {
+	.hero {
+		outline: 1px solid red;
+	}
+}
+</style>
